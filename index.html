@@ -63,11 +63,16 @@
 	    </div>
 	    <script type="text/javascript">
 	      function omni_start() {
-	        document.getElementById('omni_video').style.opacity = "1";
+	        var video = document.getElementById('omni_video_element');
+	        video.play();
+	        video.style.opacity = "1";
 	      }
 	
 	      function omni_stop() {
-	        document.getElementById('omni_video').style.opacity = "0";
+	        var video = document.getElementById('omni_video_element');
+	        video.pause();
+	        video.currentTime = 0;
+	        video.style.opacity = "1";
 	      }
 	      omni_stop()
 	    </script>
