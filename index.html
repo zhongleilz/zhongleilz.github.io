@@ -51,6 +51,56 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+	 <tr onmouseout="omni_stop()" onmouseover="omni_start()">
+	  <td style="padding:20px;width:25%;vertical-align:middle">
+	    <div class="one">
+	      <div class="two" id='omni_video'>
+	        <video width="100%" muted autoplay loop>
+	          <source src="images/OmniControl.mp4" type="video/mp4">
+	          Your browser does not support the video tag.
+	        </video>
+	      </div>
+	    </div>
+	    <script type="text/javascript">
+	      function omni_start() {
+	        document.getElementById('omni_video').style.opacity = "1";
+	      }
+	
+	      function omni_stop() {
+	        document.getElementById('omni_video').style.opacity = "0";
+	      }
+	      omni_stop()
+	    </script>
+	  </td>
+	  <td style="padding:20px;width:75%;vertical-align:middle">
+	    <a href='https://arxiv.org/abs/2310.08580'>
+	      <span class="papertitle">OmniControl: Control Any Joint at Any Time for Human Motion Generation</span>
+	    </a>
+	    <br>
+	    <a href="https://yourprofile1.com/">Your Name</a>,
+	    <a href="https://yourcoauthor1.com/">Coauthor One</a>,
+	    <a href="https://yourcoauthor2.com/">Coauthor Two</a>,
+	    <a href="https://yourcoauthor3.com/">Coauthor Three</a>,
+	    <strong>Coauthor Four</strong>,
+	    <a href="https://yourcoauthor5.com/">Coauthor Five</a>*
+	    <br>
+	    <em>ICLR</em>, 2023
+	    <br>
+	    <a href='https://arxiv.org/abs/2310.08580'>paper</a>
+	    /
+	    <a href='https://neu-vi.github.io/omnicontrol/'>project</a>
+	    /
+	    <a href='https://github.com/neu-vi/omnicontrol'>code</a>
+	    <p></p>
+	    <p>
+	      This paper introduces OmniControl, a method for controlling any joint at any time for human motion generation, providing unprecedented flexibility and accuracy in motion control.
+	    </p>
+	  </td>
+	</tr>
+
+
+
+		  
 	 <tr onmouseout="aesthetic_stop()" onmouseover="aesthetic_start()">
 	  <td style="padding:20px;width:25%;vertical-align:middle">
 	    <div class="one">
