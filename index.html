@@ -51,6 +51,59 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+	<tr onmouseout="smoodi_stop()" onmouseover="smoodi_start()">
+	  <td style="padding:20px;width:25%;vertical-align:middle">
+	    <div class="one">
+	      <div class="two" id='omni_video'>
+	        <video width="120%" muted autoplay loop>
+	          <source src="images/SMooDi" type="video/mp4">
+	          Your browser does not support the video tag.
+	        </video>
+	      </div>
+	    </div>
+	    <script type="text/javascript">
+	      function smoodi_start() {
+	        var video = document.getElementById('omni_video_element');
+	        video.play();
+	        video.style.opacity = "1";
+	      }
+	
+	      function smoodi_stop() {
+	        var video = document.getElementById('omni_video_element');
+	        video.pause();
+	        video.currentTime = 0;
+	        video.style.opacity = "1";
+	      }
+	      omni_stop()
+	    </script>
+	  </td>
+	  <td style="padding:20px;width:75%;vertical-align:middle">
+	    <a href='https://arxiv.org/abs/2310.08580'>
+	      <span class="papertitle">SMooDi: Stylized Motion Diffusion Model</span>
+	    </a>
+	    <br>
+	    <strong>Lei Zhong</strong>,
+	    <a href="https://ymingxie.github.io//">Yiming Xie</a>,
+	    <a href="https://varunjampani.github.io//">Varun Jampani</a>,
+	    <a href="https://deqings.github.io/index.html/">Deqing Sun</a>,
+	    <a href="https://jianghz.me/">Huaizu Jiang</a>
+	    <br>
+	    <em>ECCV 2024</em>
+	    <br>
+	    <a href='https://arxiv.org/abs/2310.08580'>paper</a>
+	    /
+	    <a href='https://neu-vi.github.io/SMooDi/'>project</a>
+	    /
+	    <a href='https://github.com/neu-vi/SMooDi'>code</a>
+	    <p></p>
+	    <p>
+	      This paper introduces SMooDi, which incorporates style motion sequences into a text-conditioned human motion generation model, enabling stylized motion generation.
+	    </p>
+	  </td>
+	</tr>
+
+
+		  
 	 <tr onmouseout="omni_stop()" onmouseover="omni_start()">
 	  <td style="padding:20px;width:25%;vertical-align:middle">
 	    <div class="one">
