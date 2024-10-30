@@ -55,18 +55,18 @@
 	<tr onmouseout="refu_stop()" onmouseover="refu_start()">
 	  <td style="padding:20px;width:25%;vertical-align:middle">
 	    <div class="one">
-	      <div class="two" id='graph_image'>
-	        <img src='images/FG2019.png' width="120%">
+	      <div class="two" id='refu_image'>
+	        <img src='images/ReFu.jpg' width="120%">
 	      </div>
-	      <img src='images/FG2019.png' width="120%">
+	      <img src='images/ReFu.jpg' width="120%">
 	    </div>
 	    <script type="text/javascript">
 	      function refu_start() {
-	        document.getElementById('graph_image').style.opacity = "1";
+	        document.getElementById('refu_image').style.opacity = "1";
 	      }
 	
 	      function refu_stop() {
-	        document.getElementById('graph_image').style.opacity = "0";
+	        document.getElementById('refu_image').style.opacity = "0";
 	      }
 	      graph_stop()
 	    </script>
@@ -82,7 +82,9 @@
 	    <br>
 	    <em>WACV 2025</em>
 	    <br>
-	    <a href='data/FG2019.pdf'>paper</a>
+	    <a href='https://arxiv.org/pdf/2409.12326'>paper</a>
+	    /
+	    <a href='https://arlo397.github.io/ReFu/'>project</a>
 	    <p></p>
 	    <p>
 	      This paper introduce a novel Recursive Fusion model, dubbed ReFu, designed to integrate point clouds and meshes for exemplar-free 3D Class-Incremental Learning.
