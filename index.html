@@ -179,12 +179,30 @@
   <tr onmouseout="posetraj_stop()" onmouseover="posetraj_start()">
     <td style="padding:20px;width:25%;vertical-align:top"> 
       <div class="one">
-        <div class="two" id='refu_image'>
-          <img src='images/posetraj_teaser.jpg'>
-        </div>
-        <img src='images/posetraj_teaser.jpg'>
+        <div class="two" id='sketch2anim_video'>
+	<video width="120%" muted autoplay loop>
+	  <source src="images/posetraj.mp4" type="video/mp4">
+	  Your browser does not support the video tag.
+	</video>
       </div>
-    </td>
+      </div>
+    <script type="text/javascript">
+      function posetraj_start() {
+	var video = document.getElementById('omni_video_element');
+	video.play();
+	video.style.opacity = "1";
+      }
+
+      function posetraj_stop() {
+	var video = document.getElementById('omni_video_element');
+	video.pause();
+	video.currentTime = 0;
+	video.style.opacity = "1";
+      }
+      omni_stop()
+    </script>
+  </td>
+	  
     <td style="padding:20px;width:85%;vertical-align:top;text-align:left"> 
       <a href='https://arxiv.org/pdf/2503.16068'>
         <span class="papertitle">PoseTraj: Pose-Aware Trajectory Control in Video Diffusion</span>
