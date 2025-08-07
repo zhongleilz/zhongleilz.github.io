@@ -8,514 +8,302 @@
     <meta name="author" content="Lei Zhong">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
-  </head>
 
-  <style>
-      td {
-        color: #000;xr
-        padding: 5px;
-        vertical-align: top; 
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        color: #212529;
+        margin: 0;
+        padding: 0;
       }
-      .year-marker {x
-        text-align: left;
-        font-size: 1.5em; 
-        color: #555; 
-        padding: 5px 0;
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
       }
-      img, video {
-        border-radius: 0; 
-        width: 120%; 
-        max-width: 120%;
-        object-fit: cover;
+
+      .profile-img {
+        border-radius: 50%;
+        width: 180px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      table {
-       border-spacing: 0; 
-       margin: 10px auto; 
+
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 0.5em;
+      }
+
+      h2 {
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+      }
+
+      .highlight {
+        background-color: #ffe8a1;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+
+      .conf-highlight {
+        color: #333;
+        background: none;
+        padding: 0;
+        border-radius: 0;
+        font-weight: bold;
+        font-size: 1.08em;
+        letter-spacing: 0.2px;
+      }
+
+      .table {
+        margin-bottom: 20px;
+      }
+
+      .table img, .table video {
+        border-radius: 8px;
+        max-width: 100%;
+        height: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.9em;
+        color: #6c757d;
+        margin-top: 20px;
       }
     </style>
+  </head>
 
   <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Lei Zhong
-                </p>
-                <p>I'm a PhD student in <a herf="https://informatics.ed.ac.uk/">the School of Informatics at the University of Edinburgh</a>, supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>. Before that, I received a Master's degree from Nankai University, supervised by Prof. <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>, and a Bachelor's degree from Southwest University.
-                </p>
-                
-                <p style="text-align:center">
-                  <a href="mailto:zhongleilz@icloud.com">Email</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ">Scholar</a> &nbsp;/&nbsp;
-                  <a href="https://twitter.com/LeiZhong_">Twitter</a> &nbsp;/&nbsp;
-                </p>
-              </td>
-              <td style="padding:2.5%;width:35%;max-width:35%">
-    		<a href="images/leizhong2.jpeg"><img style="width:70%;max-width:70%;object-fit: cover;" alt="profile photo" src="images/leizhong2.jpeg" class="hoverZoomLink"></a>
-		</td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
-                <p>
-		  My research interests lie at the intersection of vision and graphics. Recently, I have been focusing on 3D human motion modeling and generation. Some papers are <span class="highlight">highlighted</span>.
-		</p>
-		
-<!-- 		<p>
-		  <strong>I am currently looking for research internship opportunities.</strong>
-		</p> -->
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-
-  <tr>
-    <td colspan="2" class="year-marker">— Preprints —</td>
-  </tr>
-		  
-  <tr onmouseout="mulSMo_stop()" onmouseover="mulSMo_start()">
-    <td style="padding:20px;width:20%;vertical-align:top"> 
-      <div class="one">
-        <div class="two" id='refu_image'>
-          <img src='images/mulSMo_teaser.jpg'>
-        </div>
-        <img src='images/mulSMo_teaser.jpg'>
-      </div>
-    </td>
-    <td style="padding:20px;width:75%;vertical-align:top;text-align:left"> 
-      <a href='https://arxiv.org/abs/2412.09901'>
-        <span class="papertitle">MulSMo: Multimodal Stylized Motion Generation by Bidirectional Control Flow</span>
-      </a>
-      <br>
-      <a>Zhe Li</a>,
-      <a>Yisheng He</a>,
-      <strong>Lei Zhong</strong>,
-      <a>Weichao Shen</a>,
-      <a>Qi Zuo</a>,
-      <a>Lingteng Qiu</a>,
-      <a>Zilong Dong</a>,
-      <a>Laurence Tianruo Yang</a>,
-      <a>Weihao Yuan</a>
-     
-      <br>
-      <em>Arxiv 2024</em>
-      <br>
-      <a href='https://arxiv.org/abs/2412.09901'>paper</a>
-<!--       / -->
-<!--       <a>project</a> -->
-      <!-- <p>
-        This paper introduces PoseTraj, which leverages a Two-Stage Pose-Aware Pretraining framework and a large-scale synthetic dataset to accurately model 6D object motion.
-      </p> -->
-      <!-- <p></p> -->
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="2" class="year-marker">— 2025 —</td>
-  </tr>
-		  
-  <tr onmouseout="sketch2Anim_stop()" onmouseover="sketch2Anim_start()" bgcolor="#ffffd0">
-    <td style="padding:20px;width:25%;vertical-align:top"> 
-      <div class="one">
-        <div class="two" id='sketch2anim_video'>
-	<video width="120%" muted autoplay loop>
-	  <source src="images/Sketch2Anim.mp4" type="video/mp4">
-	  Your browser does not support the video tag.
-	</video>
-      </div>
-      </div>
-    <script type="text/javascript">
-      function sketch2Anim_start() {
-	var video = document.getElementById('omni_video_element');
-	video.play();
-	video.style.opacity = "1";
-      }
-
-      function sketch2Anim_stop() {
-	var video = document.getElementById('omni_video_element');
-	video.pause();
-	video.currentTime = 0;
-	video.style.opacity = "1";
-      }
-      omni_stop()
-    </script>
-  </td>
-
-	  
-    <td style="padding:20px;width:85%;vertical-align:top;text-align:left"> 
-      <a href='https://arxiv.org/pdf/2504.19189'>
-        <span class="papertitle">Sketch2Anim: Towards Transferring Sketch Storyboards into 3D Animation</span>
-      </a>
-      <br>
-      <strong>Lei Zhong</strong>,
-      <a href="https://ericguo5513.github.io/">Chuan Guo</a>,
-      <a href="https://ymingxie.github.io/">Yiming Xie</a>,
-      <a href="https://jiawei22.github.io/">Jiawei Wang</a>,
-      <a href="https://enigma-li.github.io/">Changjian Li</a>
-      <br>
-      <em>ACM Transactions on Graphics (Proc. SIGGRAPH 2025)</em>
-<!--       <em>Coming Soon</em> -->
-      <br>
-      <a href='https://arxiv.org/pdf/2504.19189'>paper</a>
-      /
-      <a href='https://zhongleilz.github.io/Sketch2Anim/'>project</a>
-      /
-      <a>code</a>
-      /
-      <a href='https://www.youtube.com/watch?v=5xZacNOLMKM/'>video</a>
-      <p>
-        This paper proposes Sketch2Anim, which translates 2D storyboard sketches into 3D animations through multi-conditional motion diffusion and a neural 2D-to-3D mapper.
+    <div class="container">
+      <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img">
+      <h1 class="text-center">Lei Zhong</h1>
+      <p class="text-center">I'm a PhD student at <a href="https://informatics.ed.ac.uk/">the University of Edinburgh</a>, supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>. Previously, I received my Master's from Nankai University (supervised by Prof. <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
+      <p class="text-center">
+        <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
+        <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
+        <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
       </p>
-    </td>
-		  
 
-  <tr onmouseout="posetraj_stop()" onmouseover="posetraj_start()">
-    <td style="padding:20px;width:25%;vertical-align:top"> 
-      <div class="one">
-        <div class="two" id='sketch2anim_video'>
-	<video width="120%" muted autoplay loop>
-	  <source src="images/posetraj.mp4" type="video/mp4">
-	  Your browser does not support the video tag.
-	</video>
-      </div>
-      </div>
-    <script type="text/javascript">
-      function posetraj_start() {
-	var video = document.getElementById('omni_video_element');
-	video.play();
-	video.style.opacity = "1";
-      }
+      <h2>Research</h2>
+      <p>My research interests lie at the intersection of vision and graphics. Recently, I have been focusing on 3D human motion modeling and generation. Some papers are <span class="highlight">highlighted</span>.</p>
 
-      function posetraj_stop() {
-	var video = document.getElementById('omni_video_element');
-	video.pause();
-	video.currentTime = 0;
-	video.style.opacity = "1";
-      }
-      omni_stop()
-    </script>
-  </td>
-	  
-    <td style="padding:20px;width:85%;vertical-align:top;text-align:left"> 
-      <a href='https://arxiv.org/pdf/2503.16068'>
-        <span class="papertitle">PoseTraj: Pose-Aware Trajectory Control in Video Diffusion</span>
-      </a>
-      <br>
-      <a href="https://scholar.google.com/citations?user=nXPxnK8AAAAJ&hl=zh-CN">Longbin Ji</a>,
-      <strong>Lei Zhong</strong>,
-      <a href="https://pengfei-wei.com/">Wei Pengfei</a>,
-      <a href="https://enigma-li.github.io//">Changjian Li</a>
-      <br>
-      <em>CVPR 2025</em>
-      <br>
-      <a href='https://arxiv.org/pdf/2503.16068'>paper</a>
-      /
-      <a href='https://robingg1.github.io/Pose-Traj/'>project</a>
-      /
-      <a href='https://github.com/robingg1/PoseTraj/'>code</a>
-      <p>
-        This paper introduces PoseTraj, which leverages a Two-Stage Pose-Aware Pretraining framework and a large-scale synthetic dataset to accurately model 6D object motion.
-      </p>
-      <!-- <p></p> -->
-    </td>
-  </tr>
-  
-<!-- 	<tr onmouseout="refu_stop()" onmouseover="refu_start()">
-    <td style="padding:20px;width:25%;vertical-align:top"> 
-      <div class="one">
-        <div class="two" id='refu_image'>
-          <img src='images/refu2.jpg'>
-        </div>
-        <img src='images/refu2.jpg'>
-      </div>
-    </td>
-    <td style="padding:20px;width:75%;vertical-align:top;text-align:left"> 
-      <a href='https://arxiv.org/pdf/2409.12326'>
-        <span class="papertitle">ReFu: Recursive Fusion for Exemplar-Free 3D Class-Incremental Learning</span>
-      </a>
-      <br>
-      <a href="https://arlo-yang.github.io/">Yi Yang</a>,
-      <strong>Lei Zhong</strong>,
-      <a href="https://zhuanghp.github.io/">Huiping Zhuang</a>,
-      <br>
-      <em>WACV 2025</em>
-      <br>
-      <a href='https://arxiv.org/pdf/2409.12326'>paper</a>
-      /
-      <a href='https://arlo-yang.github.io/ReFu/'>project</a>
-      <p></p>
-    </td>
-  </tr> -->
+      <h2>Publications</h2>
+      <table class="table">
+        <tr>
+          <td style="width: 30%;">
+            <img src="images/mulSMo_teaser.jpg" alt="MulSMo teaser">
+          </td>
+          <td style="width: 70%; vertical-align: middle;">
+            <a href="https://arxiv.org/abs/2412.09901" class="fw-bold">MulSMo: Multimodal Stylized Motion Generation by Bidirectional Control Flow</a><br>
+            <small>
+              <a>Zhe Li</a>,
+              <a>Yisheng He</a>,
+              <strong>Lei Zhong</strong>,
+              <a>Weichao Shen</a>,
+              <a>Qi Zuo</a>,
+              <a>Lingteng Qiu</a>,
+              <a>Zilong Dong</a>,
+              <a>Laurence Tianruo Yang</a>,
+              <a>Weihao Yuan</a>
+            </small><br>
+            <em><span class="conf-highlight">Arxiv 2024</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="https://arxiv.org/abs/2412.09901" class="btn btn-link btn-sm p-0">Paper</a>
+            </div>
+          </td>
+        </tr>
 
+        <tr style="background: none; border: 2px solid #ffe066; border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 224, 102, 0.08);">
+          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background: #fffbe6;">
+            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <source src="images/Sketch2Anim.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: #fffbe6;">
+            <a href="https://arxiv.org/pdf/2504.19189" class="fw-bold">Sketch2Anim: Towards Transferring Sketch Storyboards into 3D Animation</a><br>
+            <small><strong>Lei Zhong</strong>, 
+              <a href="https://ericguo5513.github.io/">Chuan Guo</a>, 
+              <a href="https://ymingxie.github.io/">Yiming Xie</a>, 
+              <a href="https://jiawei22.github.io/">Jiawei Wang</a>, 
+              <a href="https://enigma-li.github.io/">Changjian Li</a>
+            </small><br>
+            <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH 2025)</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="https://arxiv.org/pdf/2504.19189" class="btn btn-link btn-sm p-0">Paper</a>
+              <a href="https://zhongleilz.github.io/Sketch2Anim/" class="btn btn-link btn-sm p-0">Project</a>
+              <a href="https://github.com/zhongleilz/Sketch2Animation" class="btn btn-link btn-sm p-0">Code</a>
+              <a href="https://www.youtube.com/watch?v=5xZacNOLMKM" class="btn btn-link btn-sm p-0">Video</a>
+              <span style="color: #d90429; font-weight: bold; margin-left: 6px;">Selected by SIGGRAPH as a technical paper highlight in the official <a href="https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/" style="color: #1976d2; text-decoration: underline; font-weight: bold;" target="_blank">press releases.</a></span>
+            </div>
+          </td>
+        </tr>
 
-  <tr>
-    <td colspan="2" class="year-marker">— 2024 —</td>
-  </tr>
-		  
-	<tr onmouseout="smoodi_stop()" onmouseover="smoodi_start()">
-	  <td style="padding:20px;width:25%;vertical-align:top">
-	    <div class="one">
-	      <div class="two" id='omni_video'>
-	        <video width="120%" muted autoplay loop>
-	          <source src="images/SMooDi.mp4" type="video/mp4">
-	          Your browser does not support the video tag.
-	        </video>
-	      </div>
-	    </div>
-	    <script type="text/javascript">
-	      function smoodi_start() {
-	        var video = document.getElementById('omni_video_element');
-	        video.play();
-	        video.style.opacity = "1";
-	      }
-	
-	      function smoodi_stop() {
-	        var video = document.getElementById('omni_video_element');
-	        video.pause();
-	        video.currentTime = 0;
-	        video.style.opacity = "1";
-	      }
-	      omni_stop()
-	    </script>
-	  </td>
-    
-	  <td style="padding:20px;width:75%;vertical-align:middle">
-	    <a href='https://arxiv.org/pdf/2407.12783'>
-	      <span class="papertitle">SMooDi: Stylized Motion Diffusion Model</span>
-	    </a>
-	    <br>
-	    <strong>Lei Zhong</strong>,
-	    <a href="https://ymingxie.github.io">Yiming Xie</a>,
-	    <a href="https://varunjampani.github.io">Varun Jampani</a>,
-	    <a href="https://deqings.github.io">Deqing Sun</a>,
-	    <a href="https://jianghz.me">Huaizu Jiang</a>
-	    <br>
-	    <em>ECCV 2024</em>
-	    <br>
-	    <a href='https://arxiv.org/pdf/2407.12783'>paper</a>
-	    /
-	    <a href='https://neu-vi.github.io/SMooDi/'>project</a>
-	    /
-	    <a href='https://github.com/neu-vi/SMooDi'>code</a>
-            /
-      	    <a href='https://www.youtube.com/watch?v=jnoKpEgAlyA&t=3s/'>video</a>
-	    <!-- <p></p> -->
-	    <p>
-	      This paper introduces SMooDi, which enables stylized motion generation by incorporating style motion sequences into a text-conditioned human motion generation model.
-	    </p>
-	  </td>
-	</tr>
+        <tr>
+          <td style="width: 30%;">
+            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <source src="images/posetraj.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="width: 70%; vertical-align: middle;">
+            <a href="https://arxiv.org/pdf/2503.16068" class="fw-bold">PoseTraj: Pose-Aware Trajectory Control in Video Diffusion</a><br>
+            <small>
+              <a href="https://scholar.google.com/citations?user=nXPxnK8AAAAJ&hl=zh-CN">Longbin Ji</a>, 
+              <strong>Lei Zhong</strong>, 
+              <a href="https://pengfei-wei.com/">Wei Pengfei</a>, 
+              <a href="https://enigma-li.github.io//">Changjian Li</a>
+            </small><br>
+            <em><span class="conf-highlight">CVPR 2025</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="https://arxiv.org/pdf/2503.16068" class="btn btn-link btn-sm p-0">Paper</a>
+              <a href="https://robingg1.github.io/Pose-Traj/" class="btn btn-link btn-sm p-0">Project</a>
+              <a href="https://github.com/robingg1/PoseTraj" class="btn btn-link btn-sm p-0">Code</a>
+            </div>
+          </td>
+        </tr>
 
+        <tr>
+          <td style="width: 30%;">
+            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <source src="images/SMooDi.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="width: 70%; vertical-align: middle;">
+            <a href="https://arxiv.org/pdf/2407.12783" class="fw-bold">SMooDi: Stylized Motion Diffusion Model</a><br>
+            <small><strong>Lei Zhong</strong>, 
+              <a href="https://ymingxie.github.io">Yiming Xie</a>, 
+              <a href="https://varunjampani.github.io">Varun Jampani</a>, 
+              <a href="https://deqings.github.io">Deqing Sun</a>, 
+              <a href="https://jianghz.me">Huaizu Jiang</a>
+            </small><br>
+            <em><span class="conf-highlight">ECCV 2024</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="https://arxiv.org/pdf/2407.12783" class="btn btn-link btn-sm p-0">Paper</a>
+              <a href="https://neu-vi.github.io/SMooDi/" class="btn btn-link btn-sm p-0">Project</a>
+              <a href="https://github.com/neu-vi/SMooDi" class="btn btn-link btn-sm p-0">Code</a>
+              <a href="https://www.youtube.com/watch?v=jnoKpEgAlyA&t=3s/" class="btn btn-link btn-sm p-0">Video</a>
+            </div>
+          </td>
+        </tr>
 
-		  
-  <tr onmouseout="omni_stop()" onmouseover="omni_start()">
-    <td style="padding:20px;width:25%;vertical-align:top"> 
-      <div class="one">
-        <div class="two" id='omni_video'>
-          <video width="120%" muted autoplay loop>
-            <source src="images/OmniControl.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <script type="text/javascript">
-        function omni_start() {
-          var video = document.getElementById('omni_video_element');
-          video.play();
-          video.style.opacity = "1";
-        }
-  
-        function omni_stop() {
-          var video = document.getElementById('omni_video_element');
-          video.pause();
-          video.currentTime = 0;
-          video.style.opacity = "1";
-        }
-        omni_stop()
-      </script>
-    </td>
-    <td style="padding:20px;width:75%;vertical-align:top;text-align:left"> 
-      <a href='https://arxiv.org/abs/2310.08580'>
-        <span class="papertitle">OmniControl: Control Any Joint at Any Time for Human Motion Generation</span>
-      </a>
-      <br>
-      <a href="https://ymingxie.github.io">Yiming Xie</a>,
-      <a href="https://varunjampani.github.io">Varun Jampani</a>,
-      <strong>Lei Zhong</strong>,
-      <a href="https://deqings.github.io">Deqing Sun</a>,
-      <a href="https://jianghz.me">Huaizu Jiang</a>
-      <br>
-      <em>ICLR 2024</em>
-      <br>
-      <a href='https://arxiv.org/abs/2310.08580'>paper</a>
-      /
-      <a href='https://neu-vi.github.io/omnicontrol/'>project</a>
-      /
-      <a href='https://github.com/neu-vi/omnicontrol'>code</a>
-      <!-- <p></p> -->
-      <p>
-        This paper introduces OmniControl, which incorporates flexible spatial control signals into a text-conditioned human motion generation model based on the diffusion process.
-      </p>
-    </td>
-  </tr>
-  
+        <tr>
+          <td style="width: 30%;">
+            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <source src="images/OmniControl.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </td>
+          <td style="width: 70%; vertical-align: middle;">
+            <a href="https://arxiv.org/abs/2310.08580" class="fw-bold">OmniControl: Control Any Joint at Any Time for Human Motion Generation</a><br>
+            <small>
+              <a href="https://ymingxie.github.io">Yiming Xie</a>, 
+              <a href="https://varunjampani.github.io">Varun Jampani</a>, 
+              <strong>Lei Zhong</strong>, 
+              <a href="https://deqings.github.io">Deqing Sun</a>, 
+              <a href="https://jianghz.me">Huaizu Jiang</a>
+            </small><br>
+            <em><span class="conf-highlight">ICLR 2024</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="https://arxiv.org/abs/2310.08580" class="btn btn-link btn-sm p-0">Paper</a>
+              <a href="https://neu-vi.github.io/omnicontrol/" class="btn btn-link btn-sm p-0">Project</a>
+              <a href="https://github.com/neu-vi/omnicontrol" class="btn btn-link btn-sm p-0">Code</a>
+            </div>
+          </td>
+        </tr>
 
+        <tr style="background: none; border: 2px solid #ffe066; border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 224, 102, 0.08);">
+          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background: #fffbe6;">
+            <img src="images/aesthetic.png" alt="Aesthetic Cropping teaser">
+          </td>
+          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: #fffbe6;">
+            <a href="data/tog21.pdf" class="fw-bold">Aesthetic-guided Outward Image Cropping</a><br>
+            <small><strong>Lei Zhong</strong>, 
+              <a href="https://www.aminer.cn/profile/fengheng-li/6380814afc451b2d602b7c7e?source=zz1/">Feng-Heng Li</a>, 
+              <a href="https://scholar.google.com.hk/citations?user=wTJ83eEAAAAJ&hl=en/">Hao-Zhi Huang</a>, 
+              <a href="https://yzhang2016.github.io//">Yong Zhang</a>, 
+              <a href="https://www.shaopinglu.net/">Shao-Ping Lu</a>, 
+              <a href="https://juewang725.github.io/">Jue Wang</a>
+            </small><br>
+            <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH Asia 2021)</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="data/tog21.pdf" class="btn btn-link btn-sm p-0">Paper</a>
+              <a href="images/Outward_Cropping.pdf" class="btn btn-link btn-sm p-0">Slide</a>
+              <a href="https://www.youtube.com/watch?v=bTu24PtUqEQ&t=5s" class="btn btn-link btn-sm p-0">Video</a>
+            </div>
+          </td>
+        </tr>
 
+        <tr>
+          <td style="width: 30%;">
+            <img src="images/FG2019.png" alt="Facial Expression Recognition teaser">
+          </td>
+          <td style="width: 70%; vertical-align: middle;">
+            <a href="data/FG2019.pdf" class="fw-bold">A Graph-Structured Representation with BRNN for Static-based Facial Expression Recognition</a><br>
+            <small><strong>Lei Zhong</strong>, 
+              Changmin Bai, 
+              <a href="https://scholar.google.com.hk/citations?user=iJDD27gAAAAJ&hl=en/">Jianfeng Li</a>, 
+              <a href="https://www.researchgate.net/profile/T-Chen/">Tong Chen</a>, 
+              <a href="https://scholar.google.com.hk/citations?user=mxd6u6QAAAAJ&hl=en/">Shigang Li</a>,
+              <a href="https://scholar.google.com.hk/citations?user=kVRocB4AAAAJ&hl=en/">Yiguang Liu</a>
+            </small><br>
+            <em><span class="conf-highlight">FG 2019</span></em><br>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              <a href="data/FG2019.pdf" class="btn btn-link btn-sm p-0">Paper</a>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-  <tr>
-    <td colspan="2" class="year-marker">— Previous —</td>
-  </tr>
+      <h2>Experience</h2>
+      <table class="table">
+        <tr>
+          <td style="width: 25%;">
+            <img src="images/DRS.png" alt="Disney Research Studios" style="width: 100%; max-width: 180px;">
+          </td>
+          <td>
+            <span class="fw-bold">Disney Research Studios</span><br>
+            Research Intern<br>
+            Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
+            <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
+            <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Zurich, Switzerland</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 25%;">
+            <img src="images/tencent.png" alt="Tencent AI Lab" style="width: 100%; max-width: 150px;">
+          </td>
+          <td>
+            <span class="fw-bold">Tencent AI Lab</span><br>
+            Research Intern<br>
+            Work with: <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
+            <a href="https://calcifer.me/">Junwu Weng</a>
+            <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Shenzhen, China</div>
+          </td>
+        </tr>
+      </table>
 
-	 <tr onmouseout="aesthetic_stop()" onmouseover="aesthetic_start()" bgcolor="#ffffd0">
-	  <td style="padding:20px;width:25%;vertical-align:middle">
-	    <div class="one">
-	      <div class="two" id='aesthetic_image'>
-	        <img src='images/aesthetic.png' width="120%">
-	      </div>
-	      <img src='images/aesthetic.png' width="120%">
-	    </div>
-	    <script type="text/javascript">
-	      function aesthetic_start() {
-	        document.getElementById('aesthetic_image').style.opacity = "1";
-	      }
-	
-	      function aesthetic_stop() {
-	        document.getElementById('aesthetic_image').style.opacity = "0";
-	      }
-	      aesthetic_stop()
-	    </script>
-	  </td>
-	  <td style="padding:20px;width:75%;vertical-align:middle">
-	     <a href='data/tog21.pdf'>
-	      <span class="papertitle">Aesthetic-guided Outward Image Cropping</span>
-	    </a>
-	    <br>
-	    <strong>Lei Zhong</strong>,
-	    <a href="https://www.aminer.cn/profile/fengheng-li/6380814afc451b2d602b7c7e?source=zz1/">Feng-Heng Li</a>,
-	    <a href="https://scholar.google.com.hk/citations?user=wTJ83eEAAAAJ&hl=en/">Hao-Zhi Huang</a>,
-	    <a href="https://yzhang2016.github.io//">Yong Zhang</a>,
-<!-- 	    <strong>Coauthor Four</strong>, -->
-	    <a href="https://www.shaopinglu.net/">Shao-Ping Lu</a>,
-	    <a href="https://juewang725.github.io/">Jue Wang</a>
-	    <br>
-	    <em>ACM Transactions on Graphics (Proc. SIGGRAPH Asia 2021)</em>
-	    <br>
-	    <a href='data/tog21.pdf'>paper</a>
-      /
-      <a href='images/Outward_Cropping.pdf'>slide</a>
-	    <p></p>
-	    <p>
-	      This paper proposes an aesthetic-guided outward image cropping method that extends beyond the image border to achieve compositions unattainable with previous methods.
-	    </p>
-	  </td>
-	</tr>
-
-
-	<tr onmouseout="graph_stop()" onmouseover="graph_start()">
-	  <td style="padding:20px;width:25%;vertical-align:top">
-	    <div class="one">
-	      <div class="two" id='graph_image'>
-	        <img src='images/FG2019.png' width="120%">
-	      </div>
-	      <img src='images/FG2019.png' width="120%">
-	    </div>
-	    <script type="text/javascript">
-	      function graph_start() {
-	        document.getElementById('graph_image').style.opacity = "1";
-	      }
-	
-	      function graph_stop() {
-	        document.getElementById('graph_image').style.opacity = "0";
-	      }
-	      graph_stop()
-	    </script>
-	  </td>
-	  <td style="padding:20px;width:75%;vertical-align:left">
-	    <a href='data/FG2019.pdf'>
-	      <span class="papertitle">A Graph-Structured Representation with BRNN for Static-based Facial Expression Recognition</span>
-	    </a>
-	    <br>
-	    <strong>Lei Zhong</strong>,
-	    Changmin Bai,
-	    <a href="https://scholar.google.com.hk/citations?user=iJDD27gAAAAJ&hl=en/">Jianfeng Li</a>,
-	    <a href="https://www.researchgate.net/profile/T-Chen/">Tong Chen</a>,
-<!-- 	    <strong>Coauthor Four</strong>, -->
-	    <a href="https://scholar.google.com.hk/citations?user=mxd6u6QAAAAJ&hl=en/">Shigang Li</a>,
-            <a href="https://scholar.google.com.hk/citations?user=kVRocB4AAAAJ&hl=en/">Yiguang Liu</a>
-	    <br>
-	    <em>FG 2019 (IEEE Conference on Automatic Face and Gesture Recognition)</em>
-	    <br>
-	    <a href='data/FG2019.pdf'>paper</a>
-	    <p></p>
-	  </td>
-	</tr>
-
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:auto;text-align:center;">
-  
-  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:auto;"><tbody>
-    <tr>
-      <td style="padding:20px;width:100%;vertical-align:middle">
-        <h2>Experience</h2>
-      </td>
-    </tr>
-  </tbody></table>
-
-  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:auto;"><tbody>
-    <tr>
-      <td style="padding:10px;width:25%;vertical-align:top"> 
-        <img src="images/DRS.png" style="width:100%;max-width:160px;" alt="Disney Logo">
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:top;text-align:left"> 
-        <span class="papertitle">Disney Research Studios</span>
-        <br>
-        Research Intern<br>
-        Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
-        <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
-       
-      </td>
-    </tr>
-  </tbody></table>
-
-	<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin:auto;"><tbody>
-    <tr>
-      <td style="padding:10px;width:25%;vertical-align:top"> 
-        <img src="images/tencent.png" style="width:100%;max-width:150px;" alt="Disney Logo">
-      </td>
-      <td style="padding:20px;width:75%;vertical-align:top;text-align:left"> 
-        <span class="papertitle">Tencent AI Lab</span>
-        <br>
-        Research Intern<br>
-        Work with: <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
-        <a href="https://calcifer.me/">Junwu Weng</a>
-       
-      </td>
-    </tr>
-  </tbody></table>
-
-  <tbody>
-    <tr>
-      <td style="padding:0px;text-align:center;">
-        <br>
-        <p style="text-align:center;font-size:small;">
-          Design and source code from Jon Barron's website 
-          <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.
-        </p>
-      </td>
-    </tr>
-  </tbody>
-
-
-</table>
-</td>
-</tr>
-</table>
-	
+      <footer>
+        <p>Design and source code from Jon Barron's website <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.</p>
+        <p>&copy; 2025 Lei Zhong</p>
+      </footer>
+    </div>
   </body>
 </html>
