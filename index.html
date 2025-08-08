@@ -158,17 +158,6 @@
             qr.style.display = 'none';
           });
         }
-
-        const visitorCountElement = document.getElementById('visitor-count');
-        fetch('https://api.countapi.xyz/hit/zhongleilz.github.io/visits')
-          .then(response => response.json())
-          .then(data => {
-            visitorCountElement.textContent = `Visitor Count: ${data.value}`;
-          })
-          .catch(error => {
-            console.error('Error fetching visitor count:', error);
-            visitorCountElement.textContent = 'Visitor Count: Unavailable';
-          });
       });
     </script>
   </head>
@@ -392,7 +381,6 @@
       </table>
 
       <footer>
-        <p id="visitor-count" style="font-size: 0.9em; color: #6c757d; margin-top: 10px;">Loading visitor count...</p>
         <p>Design and source code from Jon Barron's website <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.</p>
         <p>&copy; 2025 Lei Zhong</p>
       </footer>
