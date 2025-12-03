@@ -22,6 +22,20 @@
         padding: 0;
       }
 
+      /* Slightly larger school name */
+      .school {
+        font-size: inherit; /* match parent (.lead) font-size */
+        font-weight: 400; /* normal weight, not bold */
+        color: #0d6efd; /* bootstrap primary blue */
+      }
+
+      /* Intro toggle styles */
+      .intro-toggle { cursor: pointer; color: #0d6efd; text-decoration: none; margin-left: 6px; }
+      .intro-full { margin-top: 8px; }
+      /* let hidden intro text inherit surrounding font-size (use .lead on paragraphs) */
+      .intro-full p { font-size: inherit; line-height: inherit; color: inherit; }
+      .intro-full a { font-size: inherit; }
+
       .container {
         max-width: 800px;
         margin: 20px auto;
@@ -29,6 +43,24 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         padding: 20px;
+      }
+
+      /* Scale-up version: enlarge the entire container visually by 1.5x while
+         keeping it fitted to the viewport. Disabled on small screens. */
+      .scale-up-container {
+        transform: scale(1.05);
+        transform-origin: top center;
+        /* counteract the visual enlargement so the scaled element fits the viewport width */
+        width: calc(100% / 1.05);
+        margin-left: auto;
+        margin-right: auto;
+      }
+      /* Disable scaling on narrow viewports to avoid overflow on mobile */
+      @media (max-width: 900px) {
+        .scale-up-container {
+          transform: none;
+          width: auto;
+        }
       }
 
       .profile-img {
@@ -136,6 +168,50 @@
         color: #6c757d;
         text-align: center;
       }
+
+      .hero {
+        margin-bottom: 30px;
+      }
+
+      .lead {
+        font-size: 1.2em;
+        font-weight: 400;
+        color: #333;
+      }
+  /* Make links inside .lead inherit the same font-size */
+  .lead a { font-size: inherit; }
+  /* Make the expanded intro text slightly smaller than the main lead */
+  .intro-full .lead { font-size: 1.05em; }
+      /* 低调优雅的过滤按钮样式 */
+      .pub-filter{
+        border-radius: 999px;
+        transition: background-color 0.18s ease, color 0.18s ease, transform 0.08s ease;
+      }
+      .pub-filter:not(.active):hover{
+        transform: translateY(-1px);
+      }
+      /* 激活态：浅色底 + 左侧细条强调（不抢眼） */
+      .pub-filter.active{
+        background-color: rgba(13,110,253,0.05); /* very light blue */
+        color: #0d6efd; /* bootstrap primary */
+        border-color: transparent;
+        box-shadow: none;
+        position: relative;
+      }
+      .pub-filter.active::before{
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 60%;
+        background: #0d6efd;
+        border-radius: 2px;
+        opacity: 0.95;
+      }
+      /* 可访问性：键盘 focus 明显但不刺眼 */
+      .pub-filter:focus{ outline: 3px solid rgba(13,110,253,0.12); outline-offset: 2px; }
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -158,38 +234,124 @@
             qr.style.display = 'none';
           });
         }
+
+        // Intro expand/collapse
+        var introToggle = document.getElementById('intro-toggle');
+        var introFull = document.getElementById('intro-full');
+        if(introToggle && introFull) {
+          introToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            var expanded = introToggle.getAttribute('aria-expanded') === 'true';
+            if(expanded) {
+              introFull.hidden = true;
+              introToggle.setAttribute('aria-expanded', 'false');
+              introToggle.textContent = '[...]';
+            } else {
+              introFull.hidden = false;
+              introToggle.setAttribute('aria-expanded', 'true');
+              introToggle.textContent = '[less]';
+            }
+          });
+        }
+      });
+    </script>
+    <script>
+      // Publication filter logic — run after DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        var buttons = Array.from(document.querySelectorAll('.pub-filter'));
+        var rows = Array.from(document.querySelectorAll('#publications-table tr'));
+        console.log('pub-filter init, buttons:', buttons.length, 'rows:', rows.length);
+
+        function setActive(btn){
+          buttons.forEach(function(b){ b.classList.remove('active'); });
+          if(btn) btn.classList.add('active');
+        }
+
+        function filter(cat){
+          cat = (cat || 'all').toString().trim().toLowerCase();
+          console.log('filter ->', cat);
+          rows.forEach(function(r){
+            if(cat === 'all') { r.style.display = ''; return; }
+            var rc = (r.getAttribute('data-cats')||'').toString().trim().toLowerCase();
+            var cats = rc.split(/\s+/).filter(Boolean);
+            var show = cats.indexOf(cat) !== -1;
+            r.style.display = show ? '' : 'none';
+          });
+        }
+
+        // attach handlers (defensive)
+        if(buttons.length === 0){
+          // fallback: try generic buttons inside the btn-group
+          buttons = Array.from(document.querySelectorAll('.btn-group .btn'));
+          console.log('fallback buttons count:', buttons.length);
+        }
+
+        buttons.forEach(function(b){
+          b.addEventListener('click', function(e){
+            e.preventDefault();
+            var key = (b.getAttribute('data-filter')||b.dataset.filter||'all').toString().trim().toLowerCase();
+            console.log('button clicked ->', key);
+            setActive(b);
+            filter(key);
+          });
+        });
+
+        // run initial filter based on active button
+        var activeBtn = document.querySelector('.pub-filter.active') || buttons[0];
+        if(activeBtn){
+          var initial = (activeBtn.getAttribute('data-filter')||activeBtn.dataset.filter||'all').toString().trim().toLowerCase();
+          console.log('initial active filter:', initial);
+          setActive(activeBtn);
+          filter(initial);
+        }
       });
     </script>
   </head>
 
   <body>
-    <div class="container">
-      <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img">
-      <h1 class="text-center">Lei Zhong (钟磊)</h1>
-      <p class="text-center">
-        I'm a PhD student at <a href="https://informatics.ed.ac.uk/">the University of Edinburgh</a>, supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>.<br>
-        Previously, I received Master's from Nankai University and Bachelor's from Southwest University.<br>
-        I am a recipient of the <a href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a>.
-      </p>
-      <p class="text-center">
-        <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
-        <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
-        <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
-        <button type="button" class="btn btn-outline-success btn-sm" id="wechat-btn" style="vertical-align: middle;">
-          <i class="bi bi-wechat"></i> WeChat
-        </button>
-        <div id="wechat-qr" style="display:none; position:absolute; z-index:1000; background:#fff; border:1px solid #ddd; padding:8px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
-          <img src="images/Wechat.jpeg" alt="WeChat QR" style="width:140px; height:140px; display:block;">
-          <div style="text-align:center; font-size:0.95em; color:#555; margin-top:4px;">Scan to add WeChat</div>
+  <div class="container scale-up-container">
+      <div class="row align-items-center py-4">
+        <div class="col-12 col-md-4 text-center">
+          <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img mb-0">
         </div>
-      </p>
+        <div class="col-12 col-md-8">
+          <h1 class="mb-1">Lei Zhong (钟磊)</h1>
+          <p class="lead mb-1">PhD student, <a class="school" href="https://informatics.ed.ac.uk/">University of Edinburgh</a></p>
+          <p class="lead mb-2">Recipient of the <a href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a><br>I study character animation. <a href="#" id="intro-toggle" class="intro-toggle" aria-expanded="false" aria-controls="intro-full">[...]</a></p>
+          <div id="intro-full" class="intro-full" hidden>
+            <p class="lead mb-1">Supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>.</p>
+            <p class="lead mb-1">Previously, Master's from Nankai University (supervised by <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
+          </div>
 
-      <h2>Research</h2>
-      <p class="research-intro">My research interests lie at the intersection of vision and graphics. Recently, I have been focusing on 3D human motion modeling and generation. Some papers are <span class="highlight">highlighted</span>.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
+            <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
+            <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
+            <button type="button" class="btn btn-outline-success btn-sm" id="wechat-btn" style="vertical-align: middle;">
+              <i class="bi bi-wechat"></i> WeChat
+            </button>
+          </div>
 
-      <h2>Publications</h2>
-      <table class="table">
-        <tr>
+        </div>
+      </div>
+
+      <div id="wechat-qr" style="display:none; position:absolute; z-index:1000; background:#fff; border:1px solid #ddd; padding:8px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+        <img src="images/Wechat.jpeg" alt="WeChat QR" style="width:140px; height:140px; display:block;">
+        <div style="text-align:center; font-size:0.95em; color:#555; margin-top:4px;">Scan to add WeChat</div>
+      </div>
+
+  <h2>Research</h2>
+      <div class="mb-3">
+        <div class="btn-group" role="group" aria-label="Publication filters">
+          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter active" data-filter="selected">Selected</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="animation">Animation</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="vision">Vision</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="all">All</button>
+        </div>
+      </div>
+
+      <table class="table" id="publications-table">
+  <tr data-cats="animation">
           <td style="width: 30%;">
             <img src="images/mulSMo_teaser.jpg" alt="MulSMo teaser">
           </td>
@@ -213,14 +375,14 @@
           </td>
         </tr>
 
-        <tr style="background: none; border: 2px solid #ffe066; border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 224, 102, 0.08);">
-          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background: #fffbe6;">
+        <tr data-cats="animation selected">
+          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
             <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <source src="images/Sketch2Anim.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </td>
-          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: #fffbe6;">
+          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
             <a href="https://arxiv.org/pdf/2504.19189" class="fw-bold">Sketch2Anim: Towards Transferring Sketch Storyboards into 3D Animation</a><br>
             <small><strong>Lei Zhong</strong>, 
               <a href="https://ericguo5513.github.io/">Chuan Guo</a>, 
@@ -234,12 +396,12 @@
               <a href="https://zhongleilz.github.io/Sketch2Anim/" class="btn btn-link btn-sm p-0">Project</a>
               <a href="https://github.com/zhongleilz/Sketch2Animation" class="btn btn-link btn-sm p-0">Code</a>
               <a href="https://www.youtube.com/watch?v=5xZacNOLMKM" class="btn btn-link btn-sm p-0">Video</a>
-              <span style="color: #d90429; font-weight: bold; margin-left: 6px;">Selected by SIGGRAPH as a technical paper highlight in the official <a href="https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/" style="color: #1976d2; text-decoration: underline; font-weight: bold;" target="_blank">press releases.</a></span>
+              <span style="color: #d90429; font-weight: bold; margin-left: 6px;">Selected by SIGGRAPH as a technical paper highlight in the official <a href="https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/" style="color: #0d6efd; text-decoration: underline; font-weight: 400;" target="_blank">press releases.</a></span>
             </div>
           </td>
         </tr>
 
-        <tr>
+        <tr data-cats="vision">
           <td style="width: 30%;">
             <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <source src="images/posetraj.mp4" type="video/mp4">
@@ -263,7 +425,7 @@
           </td>
         </tr>
 
-        <tr>
+  <tr data-cats="animation selected">
           <td style="width: 30%;">
             <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <source src="images/SMooDi.mp4" type="video/mp4">
@@ -288,7 +450,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-cats="animation">
           <td style="width: 30%;">
             <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <source src="images/OmniControl.mp4" type="video/mp4">
@@ -313,11 +475,11 @@
           </td>
         </tr>
 
-        <tr style="background: none; border: 2px solid #ffe066; border-radius: 10px; box-shadow: 0 2px 8px rgba(255, 224, 102, 0.08);">
-          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px; background: #fffbe6;">
+        <tr data-cats="vision selected">
+          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
             <img src="images/aesthetic.png" alt="Aesthetic Cropping teaser">
           </td>
-          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px; background: #fffbe6;">
+          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
             <a href="data/tog21.pdf" class="fw-bold">Aesthetic-guided Outward Image Cropping</a><br>
             <small><strong>Lei Zhong</strong>, 
               <a href="https://www.aminer.cn/profile/fengheng-li/6380814afc451b2d602b7c7e?source=zz1/">Feng-Heng Li</a>, 
@@ -335,7 +497,7 @@
           </td>
         </tr>
 
-        <tr>
+        <tr data-cats="vision">
           <td style="width: 30%;">
             <img src="images/FG2019.png" alt="Facial Expression Recognition teaser">
           </td>
