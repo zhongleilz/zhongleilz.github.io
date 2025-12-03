@@ -22,12 +22,7 @@
         padding: 0;
       }
 
-      /* Slightly larger school name */
-      .school, .school:visited {
-        font-size: inherit; /* match parent (.lead) font-size */
-        font-weight: 400; /* normal weight, not bold */
-        color: #0d6efd; /* bootstrap primary blue */
-      }
+  /* Slightly larger school name - removed special blue styling to match body text */
 
       /* Intro toggle styles */
       .intro-toggle { cursor: pointer; color: #0d6efd; text-decoration: none; margin-left: 6px; }
@@ -182,6 +177,18 @@
   .lead a { font-size: inherit; }
   /* Make the expanded intro text slightly smaller than the main lead */
   .intro-full .lead { font-size: 1.05em; }
+      /* Lightweight award/badge for small visual emphasis */
+      .award, .award:visited {
+        display: inline-block;
+        font-size: 0.95em;
+        color: #6c757d; /* muted grey */
+        background: rgba(108,117,125,0.06);
+        padding: 2px 8px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 400;
+      }
+      .award:hover { text-decoration: underline; color: #495057; }
       /* 低调优雅的过滤按钮样式 */
       .pub-filter{
         border-radius: 999px;
@@ -317,7 +324,8 @@
         <div class="col-12 col-md-8">
           <h1 class="mb-1">Lei Zhong (钟磊)</h1>
           <p class="lead mb-1">PhD student, University of Edinburgh</p>
-          <p class="lead mb-2">Recipient of the <a class="school" href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a><br>I study character animation. <a href="#" id="intro-toggle" class="intro-toggle" aria-expanded="false" aria-controls="intro-full">[...]</a></p>
+          <p class="lead mb-1">Recipient of the <a class="award" href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a></p>
+          <p class="lead mb-1">I study character animation. <a href="#" id="intro-toggle" class="intro-toggle" aria-expanded="false" aria-controls="intro-full">[...]</a></p>
           <div id="intro-full" class="intro-full" hidden>
             <p class="lead mb-1">Supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>.</p>
             <p class="lead mb-1">Previously, Master's from Nankai University (supervised by <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
