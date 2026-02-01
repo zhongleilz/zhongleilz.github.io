@@ -219,6 +219,27 @@
       }
       /* 可访问性：键盘 focus 明显但不刺眼 */
       .pub-filter:focus{ outline: 3px solid rgba(13,110,253,0.12); outline-offset: 2px; }
+    
+      table.table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      /* Remove default row borders */
+      table.table tr {
+        border-bottom: none;
+      }
+      table.table td {
+        border: none;
+        /* keep comfortable vertical spacing */
+        padding-top: 12px;
+        padding-bottom: 12px;
+        vertical-align: middle;
+      }
+      /* Remove any leftover bootstrap border on thead/tbody */
+      table.table > :not(caption) > * > tr {
+        border-bottom: none;
+      }
+      
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
