@@ -14,15 +14,96 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap'); /* Importing the font */
 
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 56px; /* offset for sticky nav */
+      }
       body {
         font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        /* Use pure white so the whole page is uniform */
+        background: #ffffff;
         color: #212529;
         margin: 0;
         padding: 0;
       }
 
-  /* Slightly larger school name - removed special blue styling to match body text */
+      /* Top nav bar (dark) */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1100;
+        /* slightly lighter than before */
+        background: #2b2f36;
+        color: rgba(255,255,255,0.9);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .topbar-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* move links slightly right again */
+        gap: 18px;
+      }
+      .topbar-brand {
+        color: rgba(255,255,255,0.92);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        font-size: 1.02rem;
+        padding: 6px 8px;
+        border-radius: 8px;
+        white-space: nowrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      .topbar-brand .prompt {
+        color: rgba(255,255,255,0.92);
+      }
+      .topbar-brand .welcome {
+        font-weight: 600;
+      }
+      .topbar-brand .welcome .c1 { color: #ffadad; }
+      .topbar-brand .welcome .c2 { color: #ffd6a5; }
+      .topbar-brand .welcome .c3 { color: #fff3b0; }
+      .topbar-brand .welcome .c4 { color: #b5ead7; }
+      .topbar-brand .welcome .c5 { color: #b8d8f8; }
+      .topbar-brand .welcome .c6 { color: #cfd8ff; }
+      .topbar-brand .welcome .c7 { color: #e8bff5; }
+      .topbar-brand .welcome .c8 { color: #fbc8d8; }
+      .topbar-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-left: 0; /* remove left nudge */
+      }
+      .topbar a {
+        color: rgba(255,255,255,0.86);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.08rem; /* a bit larger */
+        padding: 8px 12px;
+        border-radius: 10px;
+      }
+      .topbar a:hover,
+      .topbar a:focus {
+        color: #ffffff;
+        background: rgba(255,255,255,0.08);
+        outline: none;
+      }
+
+      /* Give the main content some breathing room below the bar */
+      body { padding-top: 0; }
+      .page-content { padding-top: 10px; }
+
+      /* Ensure tables don't paint a different background */
+      table.table,
+      table.table > :not(caption) > * > * {
+        background-color: transparent;
+      }
+
+      /* Slightly larger school name - removed special blue styling to match body text */
 
       /* Intro toggle styles */
       .intro-toggle { cursor: pointer; color: #0d6efd; text-decoration: none; margin-left: 6px; }
@@ -34,9 +115,10 @@
       .container {
         max-width: 800px;
         margin: 20px auto;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Make container blend into page (hard to perceive boundaries) */
+        background: transparent;
+        border-radius: 0;
+        box-shadow: none;
         padding: 20px;
       }
 
@@ -107,14 +189,44 @@
         border-radius: 4px;
       }
 
+      /* Publications color system: title (deep gray), authors (light grey), venue (jiajunwu blue) */
+      #publications-table a.fw-bold,
+      #publications-table a.fw-bold:visited {
+        color: #1f2937; /* slate-800 */
+        text-decoration: none;
+      }
+      #publications-table a.fw-bold:hover,
+      #publications-table a.fw-bold:focus {
+        color: #111827; /* slate-900 */
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      /* Keep author names subtle grey even when linked */
+      #publications-table small {
+        color: #8a8f98;
+      }
+      #publications-table small a,
+      #publications-table small a:visited {
+        color: #8a8f98;
+        text-decoration: none;
+      }
+      #publications-table small a:hover,
+      #publications-table small a:focus {
+        color: #6c757d;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      /* Venue highlight: use the same blue as title links previously (#0055AA) */
       .conf-highlight {
-        color: #333;
+        color: #0055AA; /* match jiajunwu.com link blue */
         background: none;
         padding: 0;
         border-radius: 0;
-        font-weight: bold;
-        font-size: 1.08em;
-        letter-spacing: 0.2px;
+        font-weight: 700;
+        font-size: 1.05em;
+        letter-spacing: 0.1px;
       }
 
       .table {
@@ -239,7 +351,160 @@
       table.table > :not(caption) > * > tr {
         border-bottom: none;
       }
-      
+
+      /* Research interests section */
+      #research-interests {
+        margin-top: 30px;
+      }
+      #research-interests h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        position: relative;
+      }
+      #research-interests h2::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, #0d6efd, transparent);
+        bottom: -5px;
+        left: 0;
+      }
+      #research-interests p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #495057;
+        margin-bottom: 0.8em;
+      }
+      #research-interests a {
+        color: #0d6efd;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      #research-interests a:hover,
+      #research-interests a:focus {
+        text-decoration: underline;
+      }
+
+      /* Experience section */
+      #experience {
+        margin-top: 30px;
+      }
+      #experience h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        position: relative;
+      }
+      #experience h2::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, #0d6efd, transparent);
+        bottom: -5px;
+        left: 0;
+      }
+      #experience table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+      #experience table th,
+      #experience table td {
+        padding: 12px 15px;
+        border: 1px solid #dee2e6;
+        vertical-align: middle;
+      }
+      #experience table th {
+        background-color: #f8f9fa;
+        font-weight: 500;
+        text-align: left;
+      }
+      #experience table td {
+        background-color: #ffffff;
+      }
+      #experience .company-logo {
+        width: 100px;
+        height: auto;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      #experience .position {
+        font-weight: 500;
+        color: #343a40;
+      }
+      #experience .duration {
+        font-size: 0.9em;
+        color: #868e96;
+      }
+      #experience .location {
+        font-size: 0.9em;
+        color: #868e96;
+        margin-top: 4px;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 30px;
+        padding: 20px 0;
+        font-size: 0.9em;
+        color: #6c757d;
+        text-align: center;
+        border-top: 1px solid #e9ecef;
+      }
+      footer a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      footer a:hover,
+      footer a:focus {
+        text-decoration: underline;
+      }
+
+      /* Publications: consistent line spacing for title/authors/venue/links/notes */
+      #publications-table td {
+        line-height: 1;
+      }
+      #publications-table a.fw-bold,
+      #publications-table small,
+      #publications-table em,
+      #publications-table .pub-links,
+      #publications-table .pub-note {
+        display: block;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+      }
+      /* tighter, consistent gap between lines */
+      #publications-table a.fw-bold { margin-bottom: 3px; }
+      #publications-table small { margin-bottom: 3px; }
+      #publications-table em { margin-bottom: 3px; }
+      #publications-table .pub-links { margin-bottom: 3px; }
+
+      /* Ensure "Coming soon" matches pub-links typography */
+      #publications-table .pub-coming-soon {
+        display: block;
+        font-size: 0.95em;
+        line-height: 1.4;
+        color: #8a8f98;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* pub-note: emphasized (red + bold) */
+      #publications-table .pub-note {
+        font-size: 0.95em;
+        color: #d90429;
+        font-weight: 700;
+      }
+      #publications-table .pub-note a,
+      #publications-table .pub-note a:visited {
+        color: inherit;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -287,6 +552,7 @@
       // Publication filter logic — run after DOM is ready
       document.addEventListener('DOMContentLoaded', function() {
         var buttons = Array.from(document.querySelectorAll('.pub-filter'));
+        var table = document.getElementById('publications-table');
         var rows = Array.from(document.querySelectorAll('#publications-table tr'));
         console.log('pub-filter init, buttons:', buttons.length, 'rows:', rows.length);
 
@@ -295,9 +561,36 @@
           if(btn) btn.classList.add('active');
         }
 
+        function getYearFromRow(r){
+          // Try to extract a 4-digit year from the conference line
+          // e.g., "CVPR 2026" or "(Proc. SIGGRAPH 2025)" or "Arxiv 2024"
+          try {
+            var conf = r.querySelector('.conf-highlight');
+            var text = conf ? (conf.textContent || '') : (r.textContent || '');
+            var m = text.match(/\b(19|20)\d{2}\b/);
+            return m ? parseInt(m[0], 10) : 0;
+          } catch(e){
+            return 0;
+          }
+        }
+
+        function sortRowsByYearDesc(){
+          if(!table) return;
+          // refresh in case DOM changed
+          rows = Array.from(table.querySelectorAll('tr'));
+          rows.sort(function(a,b){
+            return getYearFromRow(b) - getYearFromRow(a);
+          });
+          rows.forEach(function(r){ table.appendChild(r); });
+        }
+
         function filter(cat){
           cat = (cat || 'all').toString().trim().toLowerCase();
           console.log('filter ->', cat);
+
+          // Always keep a consistent order: newest first
+          sortRowsByYearDesc();
+
           rows.forEach(function(r){
             if(cat === 'all') { r.style.display = ''; return; }
             var rc = (r.getAttribute('data-cats')||'').toString().trim().toLowerCase();
@@ -337,262 +630,318 @@
   </head>
 
   <body>
-  <div class="container scale-up-container">
-      <div class="row align-items-center py-4">
-        <div class="col-12 col-md-4 text-center">
-          <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img mb-0">
-        </div>
-        <div class="col-12 col-md-8">
-          <h1 class="mb-1">Lei Zhong (钟磊)</h1>
-          <p class="lead mb-1">PhD student, University of Edinburgh</p>
-          <p class="lead mb-1">Recipient of the <a class="award" href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a></p>
-          <p class="lead mb-1">I study Character Animation. <a href="#" id="intro-toggle" class="intro-toggle" aria-expanded="false" aria-controls="intro-full">[...]</a></p>
-          <div id="intro-full" class="intro-full" hidden>
-            <p class="lead mb-1">Supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>.</p>
-            <p class="lead mb-1">Previously, Master's from Nankai University (supervised by <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
-          </div>
-
-          <div class="d-flex flex-wrap gap-2">
-            <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
-            <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
-            <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
-            <button type="button" class="btn btn-outline-success btn-sm" id="wechat-btn" style="vertical-align: middle;">
-              <i class="bi bi-wechat"></i> WeChat
-            </button>
-          </div>
-
+    <div class="topbar" role="navigation" aria-label="Primary">
+      <div class="topbar-inner">
+        <a class="topbar-brand" href="#top">
+          <span class="prompt">Lei@Edinburgh:~$</span><span class="welcome"> <span class="c1">W</span><span class="c2">e</span><span class="c3">l</span><span class="c4">c</span><span class="c5">o</span><span class="c6">m</span><span class="c7">e</span><span class="c8">!</span></span>
+        </a>
+        <div class="topbar-links" aria-label="Sections">
+          <a href="#top">Home</a>
+          <a href="#research">Research</a>
+          <a href="#experience">Experience</a>
         </div>
       </div>
-
-      <div id="wechat-qr" style="display:none; position:absolute; z-index:1000; background:#fff; border:1px solid #ddd; padding:8px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
-        <img src="images/Wechat.jpeg" alt="WeChat QR" style="width:140px; height:140px; display:block;">
-        <div style="text-align:center; font-size:0.95em; color:#555; margin-top:4px;">Scan to add WeChat</div>
-      </div>
-
-  <h2>Research</h2>
-      <div class="mb-3">
-        <div class="btn-group" role="group" aria-label="Publication filters">
-          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter active" data-filter="selected">Selected</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="animation">Animation</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="vision">Vision</button>
-          <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="all">All</button>
-        </div>
-      </div>
-
-      <table class="table" id="publications-table">
-  <tr data-cats="animation">
-          <td style="width: 30%;">
-            <img src="images/mulSMo_teaser.jpg" alt="MulSMo teaser">
-          </td>
-          <td style="width: 70%; vertical-align: middle;">
-            <a href="https://arxiv.org/abs/2412.09901" class="fw-bold">MulSMo: Multimodal Stylized Motion Generation by Bidirectional Control Flow</a><br>
-            <small>
-              <a>Zhe Li</a>,
-              <a>Yisheng He</a>,
-              <strong>Lei Zhong</strong>,
-              <a>Weichao Shen</a>,
-              <a>Qi Zuo</a>,
-              <a>Lingteng Qiu</a>,
-              <a>Zilong Dong</a>,
-              <a>Laurence Tianruo Yang</a>,
-              <a>Weihao Yuan</a>
-            </small><br>
-            <em><span class="conf-highlight">Arxiv 2024</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="https://arxiv.org/abs/2412.09901" class="btn btn-link btn-sm p-0">Paper</a>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-cats="animation selected">
-          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <source src="images/Sketch2Anim.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
-            <a href="https://arxiv.org/pdf/2504.19189" class="fw-bold">Sketch2Anim: Towards Transferring Sketch Storyboards into 3D Animation</a><br>
-            <small><strong>Lei Zhong</strong>, 
-              <a href="https://ericguo5513.github.io/">Chuan Guo</a>, 
-              <a href="https://ymingxie.github.io/">Yiming Xie</a>, 
-              <a href="https://jiawei22.github.io/">Jiawei Wang</a>, 
-              <a href="https://enigma-li.github.io/">Changjian Li</a>
-            </small><br>
-            <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH 2025)</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="https://arxiv.org/pdf/2504.19189" class="btn btn-link btn-sm p-0">Paper</a>
-              <a href="https://zhongleilz.github.io/Sketch2Anim/" class="btn btn-link btn-sm p-0">Project</a>
-              <a href="https://github.com/zhongleilz/Sketch2Animation" class="btn btn-link btn-sm p-0">Code</a>
-              <a href="https://www.youtube.com/watch?v=5xZacNOLMKM" class="btn btn-link btn-sm p-0">Video</a>
-              <span style="color: #d90429; font-weight: bold; margin-left: 6px;">Selected by SIGGRAPH as a technical paper highlight in the official <a href="https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/" style="color: #0d6efd; text-decoration: underline; font-weight: 400;" target="_blank">press releases.</a></span>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-cats="vision">
-          <td style="width: 30%;">
-            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <source src="images/posetraj.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="width: 70%; vertical-align: middle;">
-            <a href="https://arxiv.org/pdf/2503.16068" class="fw-bold">PoseTraj: Pose-Aware Trajectory Control in Video Diffusion</a><br>
-            <small>
-              <a href="https://scholar.google.com/citations?user=nXPxnK8AAAAJ&hl=zh-CN">Longbin Ji</a>, 
-              <strong>Lei Zhong</strong>, 
-              <a href="https://pengfei-wei.com/">Wei Pengfei</a>, 
-              <a href="https://enigma-li.github.io//">Changjian Li</a>
-            </small><br>
-            <em><span class="conf-highlight">CVPR 2025</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="https://arxiv.org/pdf/2503.16068" class="btn btn-link btn-sm p-0">Paper</a>
-              <a href="https://robingg1.github.io/Pose-Traj/" class="btn btn-link btn-sm p-0">Project</a>
-              <a href="https://github.com/robingg1/PoseTraj" class="btn btn-link btn-sm p-0">Code</a>
-            </div>
-          </td>
-        </tr>
-
-  <tr data-cats="animation selected">
-          <td style="width: 30%;">
-            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <source src="images/SMooDi.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="width: 70%; vertical-align: middle;">
-            <a href="https://arxiv.org/pdf/2407.12783" class="fw-bold">SMooDi: Stylized Motion Diffusion Model</a><br>
-            <small><strong>Lei Zhong</strong>, 
-              <a href="https://ymingxie.github.io">Yiming Xie</a>, 
-              <a href="https://varunjampani.github.io">Varun Jampani</a>, 
-              <a href="https://deqings.github.io">Deqing Sun</a>, 
-              <a href="https://jianghz.me">Huaizu Jiang</a>
-            </small><br>
-            <em><span class="conf-highlight">ECCV 2024</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="https://arxiv.org/pdf/2407.12783" class="btn btn-link btn-sm p-0">Paper</a>
-              <a href="https://neu-vi.github.io/SMooDi/" class="btn btn-link btn-sm p-0">Project</a>
-              <a href="https://github.com/neu-vi/SMooDi" class="btn btn-link btn-sm p-0">Code</a>
-              <a href="https://www.youtube.com/watch?v=jnoKpEgAlyA&t=3s/" class="btn btn-link btn-sm p-0">Video</a>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-cats="animation">
-          <td style="width: 30%;">
-            <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-              <source src="images/OmniControl.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </td>
-          <td style="width: 70%; vertical-align: middle;">
-            <a href="https://arxiv.org/abs/2310.08580" class="fw-bold">OmniControl: Control Any Joint at Any Time for Human Motion Generation</a><br>
-            <small>
-              <a href="https://ymingxie.github.io">Yiming Xie</a>, 
-              <a href="https://varunjampani.github.io">Varun Jampani</a>, 
-              <strong>Lei Zhong</strong>, 
-              <a href="https://deqings.github.io">Deqing Sun</a>, 
-              <a href="https://jianghz.me">Huaizu Jiang</a>
-            </small><br>
-            <em><span class="conf-highlight">ICLR 2024</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="https://arxiv.org/abs/2310.08580" class="btn btn-link btn-sm p-0">Paper</a>
-              <a href="https://neu-vi.github.io/omnicontrol/" class="btn btn-link btn-sm p-0">Project</a>
-              <a href="https://github.com/neu-vi/omnicontrol" class="btn btn-link btn-sm p-0">Code</a>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-cats="vision selected">
-          <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-            <img src="images/aesthetic.png" alt="Aesthetic Cropping teaser">
-          </td>
-          <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
-            <a href="data/tog21.pdf" class="fw-bold">Aesthetic-guided Outward Image Cropping</a><br>
-            <small><strong>Lei Zhong</strong>, 
-              <a href="https://www.aminer.cn/profile/fengheng-li/6380814afc451b2d602b7c7e?source=zz1/">Feng-Heng Li</a>, 
-              <a href="https://scholar.google.com.hk/citations?user=wTJ83eEAAAAJ&hl=en/">Hao-Zhi Huang</a>, 
-              <a href="https://yzhang2016.github.io//">Yong Zhang</a>, 
-              <a href="https://www.shaopinglu.net/">Shao-Ping Lu</a>, 
-              <a href="https://juewang725.github.io/">Jue Wang</a>
-            </small><br>
-            <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH Asia 2021)</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="data/tog21.pdf" class="btn btn-link btn-sm p-0">Paper</a>
-              <a href="images/Outward_Cropping.pdf" class="btn btn-link btn-sm p-0">Slide</a>
-              <a href="https://www.youtube.com/watch?v=bTu24PtUqEQ&t=5s" class="btn btn-link btn-sm p-0">Video</a>
-            </div>
-          </td>
-        </tr>
-
-        <tr data-cats="vision">
-          <td style="width: 30%;">
-            <img src="images/FG2019.png" alt="Facial Expression Recognition teaser">
-          </td>
-          <td style="width: 70%; vertical-align: middle;">
-            <a href="data/FG2019.pdf" class="fw-bold">A Graph-Structured Representation with BRNN for Static-based Facial Expression Recognition</a><br>
-            <small><strong>Lei Zhong</strong>, 
-              Changmin Bai, 
-              <a href="https://scholar.google.com.hk/citations?user=iJDD27gAAAAJ&hl=en/">Jianfeng Li</a>, 
-              <a href="https://www.researchgate.net/profile/T-Chen/">Tong Chen</a>, 
-              <a href="https://scholar.google.com.hk/citations?user=mxd6u6QAAAAJ&hl=en/">Shigang Li</a>,
-              <a href="https://scholar.google.com.hk/citations?user=kVRocB4AAAAJ&hl=en/">Yiguang Liu</a>
-            </small><br>
-            <em><span class="conf-highlight">FG 2019</span></em><br>
-            <div class="d-flex flex-wrap gap-2 mb-2">
-              <a href="data/FG2019.pdf" class="btn btn-link btn-sm p-0">Paper</a>
-            </div>
-          </td>
-        </tr>
-      </table>
-
-      <h2>Experience</h2>
-      <table class="table">
-        <tr>
-          <td style="width: 25%;">
-            <img src="images/DRS.png" alt="Disney Research Studios" style="width: 100%; max-width: 180px;">
-          </td>
-          <td>
-            <span class="fw-bold">Disney Research Studios</span><br>
-            Research Intern<br>
-            Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
-            <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
-            <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Zurich, Switzerland</div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="width: 25%;">
-            <img src="images/neu_logo.png" alt="Northeastern University" style="width: 100%; max-width: 180px;">
-          </td>
-          <td>
-            <span class="fw-bold">Northeastern University</span><br>
-            Research Assistant<br>
-            Work with: <a href="https://jianghz.me/">Huaizu Jiang</a>,
-            <a href="https://ymingxie.github.io//">Yiming Xie</a>
-            <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Remote</div>
-          </td>
-        </tr>
-
-        <tr>
-          <td style="width: 25%;">
-            <img src="images/tencent.png" alt="Tencent AI Lab" style="width: 100%; max-width: 150px;">
-          </td>
-          <td>
-            <span class="fw-bold">Tencent AI Lab</span><br>
-            Research Intern<br>
-            Work with: <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
-            <a href="https://calcifer.me/">Junwu Weng</a>
-            <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Shenzhen, China</div>
-          </td>
-        </tr>
-      </table>
-
-      <footer>
-        <p>Design and source code from Jon Barron's website <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.</p>
-        <p>&copy; 2026 Lei Zhong</p>
-      </footer>
     </div>
+
+    <div class="page-content" id="top">
+      <div class="container scale-up-container">
+          <div class="row align-items-center py-4">
+            <div class="col-12 col-md-4 text-center">
+              <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img mb-0">
+            </div>
+            <div class="col-12 col-md-8">
+              <h1 class="mb-1">Lei Zhong (钟磊)</h1>
+              <p class="lead mb-1">PhD student, University of Edinburgh</p>
+              <p class="lead mb-1">Recipient of the <a class="award" href="https://research.google/programs-and-events/phd-fellowship/recipients/">2025 Google PhD Fellowship</a></p>
+              <p class="lead mb-1">I study Character Animation. <a href="#" id="intro-toggle" class="intro-toggle" aria-expanded="false" aria-controls="intro-full">[...]</a></p>
+              <div id="intro-full" class="intro-full" hidden>
+                <p class="lead mb-1">Supervised by Prof. <a href="https://enigma-li.github.io/">Changjian Li</a>.</p>
+                <p class="lead mb-1">Previously, Master's from Nankai University (supervised by <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+                <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
+                <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
+                <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
+                <button type="button" class="btn btn-outline-success btn-sm" id="wechat-btn" style="vertical-align: middle;">
+                  <i class="bi bi-wechat"></i> WeChat
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="wechat-qr" style="display:none; position:absolute; z-index:1000; background:#fff; border:1px solid #ddd; padding:8px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.12);">
+            <img src="images/Wechat.jpeg" alt="WeChat QR" style="width:140px; height:140px; display:block;">
+            <div style="text-align:center; font-size:0.95em; color:#555; margin-top:4px;">Scan to add WeChat</div>
+          </div>
+
+      <h2 id="research">Research</h2>
+          <div class="mb-3">
+            <div class="btn-group" role="group" aria-label="Publication filters">
+              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter active" data-filter="selected">Selected</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="animation">Animation</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="vision">Vision</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="all">All</button>
+            </div>
+          </div>
+
+          <table class="table" id="publications-table">
+      <tr data-cats="animation">
+              <td style="width: 30%;">
+                <img src="images/mulSMo_teaser.jpg" alt="MulSMo teaser">
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="https://arxiv.org/abs/2412.09901" class="fw-bold">MulSMo: Multimodal Stylized Motion Generation by Bidirectional Control Flow</a>
+                <small>
+                  <a href="https://scholar.google.com/citations?user=U8f81zQAAAAJ&hl=en/">Zhe Li</a>, 
+                  <a href="https://ericguo5513.github.io/">Yisheng He</a>, 
+                  <strong>Lei Zhong</strong>,
+                  <span aria-hidden="true">&hellip;</span><span class="visually-hidden">, and others,</span>
+                  <a href="https://weihao-yuan.com/">Weihao Yuan</a>,
+                </small>
+                <em><span class="conf-highlight">Arxiv 2024</span></em>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/abs/2412.09901">Paper</a>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cats="animation selected">
+              <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                  <source src="images/Sketch2Anim.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <a href="https://arxiv.org/pdf/2504.19189" class="fw-bold">Sketch2Anim: Towards Transferring Sketch Storyboards into 3D Animation</a>
+                <small><strong>Lei Zhong</strong>, 
+                  <a href="https://ericguo5513.github.io/">Chuan Guo</a>, 
+                  <a href="https://ymingxie.github.io/">Yiming Xie</a>, 
+                  <a href="https://jiawei22.github.io/">Jiawei Wang</a>, 
+                  <a href="https://enigma-li.github.io/">Changjian Li</a>
+                </small>
+                <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH 2025)</span></em>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/pdf/2504.19189">Paper</a>
+                  <span class="sep">/</span>
+                  <a href="https://zhongleilz.github.io/Sketch2Anim/">Project</a>
+                  <span class="sep">/</span>
+                  <a href="https://github.com/zhongleilz/Sketch2Animation">Code</a>
+                  <span class="sep">/</span>
+                  <a href="https://www.youtube.com/watch?v=5xZacNOLMKM">Video</a>
+                </div>
+                <div class="pub-note">
+                  Selected by SIGGRAPH as a technical paper highlight in the official <a href="https://s2025.siggraph.org/3d-generative-ai-transforms-how-we-create-design-interact-with-digital-content/" target="_blank">press releases</a>.
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cats="vision">
+              <td style="width: 30%;">
+                <img src="images/CVPR26.png" alt="Aesthetic Cropping teaser">
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="https://zhongleilz.github.io/" class="fw-bold">Edge-Focused Super-Resolution for Omnidirectional Images with Spherical Geometric Augmentation</a>
+                <small>
+                  <a href="https://zhongleilz.github.io/">Shaolin Wang</a>,
+                  <a href="https://zhongleilz.github.io/">Yuying Li</a>,
+                  <strong>Lei Zhong</strong>,
+                  <a href="https://scholar.google.com/citations?user=mxd6u6QAAAAJ&hl=en">Shigang Li</a>,
+                  <a href="https://popqlee.github.io/">Jianfeng Li</a>
+                </small>
+                <em><span class="conf-highlight">CVPR 2026</span></em>
+                <div class="pub-coming-soon">Coming soon</div>
+              </td>
+            </tr>
+
+            <tr data-cats="vision">
+              <td style="width: 30%;">
+                <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                  <source src="images/posetraj.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="https://arxiv.org/pdf/2503.16068" class="fw-bold">PoseTraj: Pose-Aware Trajectory Control in Video Diffusion</a>
+                <small>
+                  <a href="https://scholar.google.com/citations?user=nXPxnK8AAAAJ&hl=zh-CN">Longbin Ji</a>, 
+                  <strong>Lei Zhong</strong>, 
+                  <a href="https://pengfei-wei.com/">Wei Pengfei</a>, 
+                  <a href="https://enigma-li.github.io//">Changjian Li</a>
+                </small>
+                <em><span class="conf-highlight">CVPR 2025</span></em>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/pdf/2503.16068">Paper</a>
+                  <span class="sep">/</span>
+                  <a href="https://robingg1.github.io/Pose-Traj/">Project</a>
+                  <span class="sep">/</span>
+                  <a href="https://github.com/robingg1/PoseTraj">Code</a>
+                </div>
+              </td>
+            </tr>
+
+      <tr data-cats="animation selected">
+              <td style="width: 30%;">
+                <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                  <source src="images/SMooDi.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="https://arxiv.org/pdf/2407.12783" class="fw-bold">SMooDi: Stylized Motion Diffusion Model</a>
+                <small><strong>Lei Zhong</strong>, 
+                  <a href="https://ymingxie.github.io">Yiming Xie</a>, 
+                  <a href="https://varunjampani.github.io">Varun Jampani</a>, 
+                  <a href="https://deqings.github.io">Deqing Sun</a>, 
+                  <a href="https://jianghz.me">Huaizu Jiang</a>
+                </small>
+                <em><span class="conf-highlight">ECCV 2024</span></em>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/pdf/2407.12783">Paper</a>
+                  <span class="sep">/</span>
+                  <a href="https://neu-vi.github.io/SMooDi/">Project</a>
+                  <span class="sep">/</span>
+                  <a href="https://github.com/neu-vi/SMooDi">Code</a>
+                  <span class="sep">/</span>
+                  <a href="https://www.youtube.com/watch?v=jnoKpEgAlyA&t=3s/">Video</a>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cats="animation">
+              <td style="width: 30%;">
+                <video muted autoplay loop style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                  <source src="images/OmniControl.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="https://arxiv.org/abs/2310.08580" class="fw-bold">OmniControl: Control Any Joint at Any Time for Human Motion Generation</a>
+                <small>
+                  <a href="https://ymingxie.github.io">Yiming Xie</a>, 
+                  <a href="https://varunjampani.github.io">Varun Jampani</a>, 
+                  <strong>Lei Zhong</strong>, 
+                  <a href="https://deqings.github.io">Deqing Sun</a>, 
+                  <a href="https://jianghz.me">Huaizu Jiang</a>
+                </small>
+                <em><span class="conf-highlight">ICLR 2024</span></em>
+                <div class="pub-links">
+                  <a href="https://arxiv.org/abs/2310.08580">Paper</a>
+                  <span class="sep">/</span>
+                  <a href="https://neu-vi.github.io/omnicontrol/">Project</a>
+                  <span class="sep">/</span>
+                  <a href="https://github.com/neu-vi/omnicontrol">Code</a>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cats="vision selected">
+              <td style="width: 30%; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                <img src="images/aesthetic.png" alt="Aesthetic Cropping teaser">
+              </td>
+              <td style="width: 70%; vertical-align: middle; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <a href="data/tog21.pdf" class="fw-bold">Aesthetic-guided Outward Image Cropping</a>
+                <small><strong>Lei Zhong</strong>, 
+                  <a href="https://www.aminer.cn/profile/fengheng-li/6380814afc451b2d602b7c7e?source=zz1/">Feng-Heng Li</a>, 
+                  <a href="https://scholar.google.com.hk/citations?user=wTJ83eEAAAAJ&hl=en/">Hao-Zhi Huang</a>, 
+                  <a href="https://yzhang2016.github.io//">Yong Zhang</a>, 
+                  <a href="https://www.shaopinglu.net/">Shao-Ping Lu</a>, 
+                  <a href="https://juewang725.github.io/">Jue Wang</a>
+                </small>
+                <em><span class="conf-highlight">ACM Transactions on Graphics (Proc. SIGGRAPH Asia 2021)</span></em>
+                <div class="pub-links">
+                  <a href="data/tog21.pdf">Paper</a>
+                  <span class="sep">/</span>
+                  <a href="images/Outward_Cropping.pdf">Slide</a>
+                  <span class="sep">/</span>
+                  <a href="https://www.youtube.com/watch?v=bTu24PtUqEQ&t=5s">Video</a>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cats="vision">
+              <td style="width: 30%;">
+                <img src="images/FG2019.png" alt="Facial Expression Recognition teaser">
+              </td>
+              <td style="width: 70%; vertical-align: middle;">
+                <a href="data/FG2019.pdf" class="fw-bold">A Graph-Structured Representation with BRNN for Static-based Facial Expression Recognition</a>
+                <small><strong>Lei Zhong</strong>, 
+                  <a href="https://zhongleilz.github.io/">Changmin Bai</a>, 
+                  <a href="https://popqlee.github.io/">Jianfeng Li</a>, 
+                  <a href="https://www.researchgate.net/profile/T-Chen/">Tong Chen</a>, 
+                  <a href="https://scholar.google.com.hk/citations?user=mxd6u6QAAAAJ&hl=en/">Shigang Li</a>,
+                  <a href="https://scholar.google.com.hk/citations?user=kVRocB4AAAAJ&hl=en/">Yiguang Liu</a>
+                </small>
+                <em><span class="conf-highlight">FG 2019</span></em>
+                <div class="pub-links">
+                  <a href="data/FG2019.pdf">Paper</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <h2 id="experience">Experience</h2>
+          <table class="table">
+
+            <!-- <tr>
+              <td style="width: 25%;">
+                <img src="images/lightspeed_logo.png" alt="LightSpeed Studios" style="width: 100%; max-width: 180px;">
+              </td>
+              <td>
+                <span class="fw-bold">LightSpeed Studios</span><br>
+                Research Intern<br>
+                Work with: <a href="https://scholar.google.com/citations?user=7oepLUoAAAAJ&hl=en/">Jingwei Xu</a>
+                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">London, UK</div>
+              </td>
+            </tr> -->
+
+            <tr>
+              <td style="width: 25%;">
+                <img src="images/DRS.png" alt="Disney Research Studios" style="width: 100%; max-width: 180px;">
+              </td>
+              <td>
+                <span class="fw-bold">Disney Research Studios</span><br>
+                Research Intern<br>
+                Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
+                <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
+                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Zurich, Switzerland</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 25%;">
+                <img src="images/neu_logo.png" alt="Northeastern University" style="width: 100%; max-width: 180px;">
+              </td>
+              <td>
+                <span class="fw-bold">Northeastern University</span><br>
+                Research Assistant<br>
+                Work with: <a href="https://jianghz.me/">Huaizu Jiang</a>,
+                <a href="https://ymingxie.github.io//">Yiming Xie</a>
+                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Remote</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width: 25%;">
+                <img src="images/tencent.png" alt="Tencent AI Lab" style="width: 100%; max-width: 150px;">
+              </td>
+              <td>
+                <span class="fw-bold">Tencent AI Lab</span><br>
+                Research Intern<br>
+                Work with: <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
+                <a href="https://calcifer.me/">Junwu Weng</a>
+                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Shenzhen, China</div>
+              </td>
+            </tr>
+          </table>
+
+          <footer>
+            <p>Design and source code from Jon Barron's website <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.</p>
+            <p>&copy; 2026 Lei Zhong</p>
+          </footer>
+        </div>
+      </div>
   </body>
 </html>
