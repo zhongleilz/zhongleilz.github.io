@@ -7,7 +7,9 @@
 
     <meta name="author" content="Lei Zhong">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon/emoji.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="images/favicon/emoji.jpg">
+    <link rel="shortcut icon" href="images/favicon/emoji.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
@@ -244,30 +246,45 @@
         font-size: 1.18em;
       }
 
-      .btn {
-        font-size: 0.9em;
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .contact-btn,
+      .contact-btn:visited {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: 1px solid rgba(33, 37, 41, 0.14);
+        border-radius: 9px;
+        background: #ffffff;
+        color: #5f6368;
+        text-decoration: none;
+        font-size: 0.94rem;
         font-weight: 500;
-        transition: background-color 0.3s ease, color 0.3s ease;
+        line-height: 1.2;
+        transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
       }
 
-      .btn-outline-primary:hover {
-        background-color: #004085;
-        color: #fff;
+      .contact-btn:hover,
+      .contact-btn:focus {
+        background: rgba(13, 110, 253, 0.05);
+        border-color: rgba(13, 110, 253, 0.14);
+        color: #212529;
+        text-decoration: none;
+        outline: none;
+        box-shadow: none;
       }
 
-      .btn-outline-secondary:hover {
-        background-color: #383d41;
-        color: #fff;
+      .contact-btn:focus-visible {
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.08);
       }
 
-      .btn-outline-info:hover {
-        background-color: #117a8b;
-        color: #fff;
-      }
-
-      .btn-outline-success:hover {
-        background-color: #155724;
-        color: #fff;
+      .contact-btn i {
+        font-size: 0.95em;
       }
 
       footer {
@@ -285,6 +302,14 @@
         font-weight: 400;
         color: #333;
       }
+      .collab-note {
+        font-size: 1.16em;
+        font-weight: 500;
+        color: #5f6368;
+        margin: 8px 0 10px;
+        padding-left: 10px;
+        border-left: 3px solid rgba(13, 110, 253, 0.35);
+      }
   /* Make links inside .lead inherit the same font-size */
   .lead a { font-size: inherit; }
   /* Make the expanded intro text slightly smaller than the main lead */
@@ -301,36 +326,53 @@
         font-weight: 400;
       }
       .award:hover { text-decoration: underline; color: #495057; }
-      /* 低调优雅的过滤按钮样式 */
-      .pub-filter{
-        border-radius: 999px;
-        transition: background-color 0.18s ease, color 0.18s ease, transform 0.08s ease;
+      /* Research publication tabs: quiet text tabs with a slim underline */
+      .pub-filter-tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 13px;
       }
-      .pub-filter:not(.active):hover{
-        transform: translateY(-1px);
-      }
-      /* 激活态：浅色底 + 左侧细条强调（不抢眼） */
-      .pub-filter.active{
-        background-color: rgba(13,110,253,0.05); /* very light blue */
-        color: #0d6efd; /* bootstrap primary */
-        border-color: transparent;
-        box-shadow: none;
+      .pub-filter {
+        appearance: none;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        color: #7b8088;
+        font-size: 0.98rem;
+        font-weight: 500;
+        line-height: 1.2;
+        padding: 0 0 12px;
         position: relative;
+        transition: color 0.18s ease;
       }
-      .pub-filter.active::before{
+      .pub-filter:hover,
+      .pub-filter:focus {
+        background: transparent;
+        color: #343a40;
+        outline: none;
+        box-shadow: none;
+      }
+      .pub-filter::after {
         content: "";
         position: absolute;
-        left: 6px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 3px;
-        height: 60%;
-        background: #0d6efd;
-        border-radius: 2px;
-        opacity: 0.95;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        background: transparent;
+        transition: background-color 0.18s ease;
       }
-      /* 可访问性：键盘 focus 明显但不刺眼 */
-      .pub-filter:focus{ outline: 3px solid rgba(13,110,253,0.12); outline-offset: 2px; }
+      .pub-filter.active {
+        background: transparent;
+        color: #212529;
+        box-shadow: none;
+      }
+      .pub-filter.active::after {
+        background: #0d6efd;
+      }
+      .pub-filter:focus-visible {
+        color: #212529;
+      }
     
       table.table {
         border-collapse: separate;
@@ -659,11 +701,13 @@
                 <p class="lead mb-1">Previously, Master's from Nankai University (supervised by <a href="https://www.shaopinglu.net//">Shao-ping Lu</a>) and Bachelor's from Southwest University.</p>
               </div>
 
-              <div class="d-flex flex-wrap gap-2">
-                <a href="mailto:zhongleilz@icloud.com" class="btn btn-outline-primary btn-sm">Email</a>
-                <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="btn btn-outline-secondary btn-sm">Scholar</a>
-                <a href="https://twitter.com/LeiZhong_" class="btn btn-outline-info btn-sm">Twitter</a>
-                <button type="button" class="btn btn-outline-success btn-sm" id="wechat-btn" style="vertical-align: middle;">
+              <p class="collab-note">Happy to discuss research and collaborations.</p>
+
+              <div class="contact-links">
+                <a href="mailto:zhongleilz@icloud.com" class="contact-btn">Email</a>
+                <a href="https://scholar.google.it/citations?user=stJ4ohIAAAAJ" class="contact-btn">Scholar</a>
+                <a href="https://twitter.com/LeiZhong_" class="contact-btn">Twitter</a>
+                <button type="button" class="contact-btn" id="wechat-btn">
                   <i class="bi bi-wechat"></i> WeChat
                 </button>
               </div>
@@ -678,11 +722,11 @@
 
       <h2 id="research">Research</h2>
           <div class="mb-3">
-            <div class="btn-group" role="group" aria-label="Publication filters">
-              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter active" data-filter="selected">Selected</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="animation">Animation</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="vision">Vision</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary pub-filter" data-filter="all">All</button>
+            <div class="pub-filter-tabs" role="tablist" aria-label="Publication filters">
+              <button type="button" class="pub-filter active" data-filter="selected">Selected</button>
+              <button type="button" class="pub-filter" data-filter="animation">Animation</button>
+              <button type="button" class="pub-filter" data-filter="vision">Vision</button>
+              <button type="button" class="pub-filter" data-filter="all">All</button>
             </div>
           </div>
 
