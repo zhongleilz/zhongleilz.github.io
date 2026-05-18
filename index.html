@@ -34,58 +34,56 @@
         position: sticky;
         top: 0;
         z-index: 1100;
-        /* slightly lighter than before */
-        background: #2b2f36;
+        background: linear-gradient(180deg, #2a3036, #242930);
         color: rgba(255,255,255,0.9);
         border-bottom: 1px solid rgba(255,255,255,0.06);
       }
       .topbar-inner {
-        max-width: 980px;
+        max-width: 920px;
         margin: 0 auto;
-        padding: 10px 14px;
+        padding: 9px 14px;
         display: flex;
         align-items: center;
-        justify-content: space-between; /* move links slightly right again */
+        justify-content: space-between;
         gap: 18px;
       }
       .topbar-brand {
         color: rgba(255,255,255,0.92);
         text-decoration: none;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-        font-size: 1.02rem;
-        padding: 6px 8px;
+        font-weight: 500;
+        letter-spacing: 0;
+        font-size: 0.96rem;
+        padding: 5px 4px;
         border-radius: 8px;
         white-space: nowrap;
         font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       }
       .topbar-brand .prompt {
-        color: rgba(255,255,255,0.92);
+        color: rgba(232,238,245,0.9);
       }
       .topbar-brand .welcome {
+        color: rgba(255, 233, 196, 0.88);
         font-weight: 600;
       }
-      .topbar-brand .welcome .c1 { color: #ffadad; }
-      .topbar-brand .welcome .c2 { color: #ffd6a5; }
-      .topbar-brand .welcome .c3 { color: #fff3b0; }
-      .topbar-brand .welcome .c4 { color: #b5ead7; }
-      .topbar-brand .welcome .c5 { color: #b8d8f8; }
-      .topbar-brand .welcome .c6 { color: #cfd8ff; }
-      .topbar-brand .welcome .c7 { color: #e8bff5; }
-      .topbar-brand .welcome .c8 { color: #fbc8d8; }
+      .topbar-brand:hover,
+      .topbar-brand:focus {
+        background: rgba(255,255,255,0.05);
+        color: #ffffff;
+        outline: none;
+      }
       .topbar-links {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: 10px;
-        margin-left: 0; /* remove left nudge */
+        gap: 8px;
+        margin-left: 0;
       }
       .topbar a {
-        color: rgba(255,255,255,0.86);
+        color: rgba(255,255,255,0.8);
         text-decoration: none;
         font-weight: 500;
-        font-size: 1.08rem; /* a bit larger */
-        padding: 8px 12px;
+        font-size: 0.98rem;
+        padding: 7px 11px;
         border-radius: 10px;
       }
       .topbar a:hover,
@@ -115,31 +113,12 @@
       .intro-full a { font-size: inherit; }
 
       .container {
-        max-width: 860px;
-        margin: 20px auto;
-        /* Make container blend into page (hard to perceive boundaries) */
+        max-width: 920px;
+        margin: 28px auto 40px;
         background: transparent;
         border-radius: 0;
         box-shadow: none;
-        padding: 20px;
-      }
-
-      /* Scale-up version: enlarge the entire container visually by 1.5x while
-         keeping it fitted to the viewport. Disabled on small screens. */
-      .scale-up-container {
-        transform: scale(1.05);
-        transform-origin: top center;
-        /* counteract the visual enlargement so the scaled element fits the viewport width */
-        width: calc(100% / 1.05);
-        margin-left: auto;
-        margin-right: auto;
-      }
-      /* Disable scaling on narrow viewports to avoid overflow on mobile */
-      @media (max-width: 900px) {
-        .scale-up-container {
-          transform: none;
-          width: auto;
-        }
+        padding: 24px 22px 20px;
       }
 
       .profile-img {
@@ -155,8 +134,8 @@
       }
 
       .profile-img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        transform: scale(1.04);
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
       }
 
       h1 {
@@ -373,6 +352,10 @@
       .pub-filter:focus-visible {
         color: #212529;
       }
+
+      .meta-sep {
+        color: #adb5bd;
+      }
     
       table.table {
         border-collapse: separate;
@@ -430,7 +413,7 @@
 
       /* Experience section */
       #experience {
-        margin-top: 30px;
+        margin-top: 34px;
       }
       #experience h2 {
         font-size: 1.8em;
@@ -446,43 +429,89 @@
         bottom: -5px;
         left: 0;
       }
-      #experience table {
+      .experience-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .experience-item {
+        display: grid;
+        grid-template-columns: 188px 1fr;
+        gap: 22px;
+        align-items: center;
+        padding: 14px 0;
+      }
+      .experience-item:first-child {
+        padding-top: 8px;
+      }
+      .experience-item:last-child {
+        padding-bottom: 0;
+      }
+      .experience-logo-slot {
+        display: flex;
+        justify-content: flex-start;
+      }
+      .experience-logo-frame {
+        width: 174px;
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .experience-logo-frame.is-wide {
+        width: 196px;
+      }
+      .experience-logo {
         width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-      }
-      #experience table th,
-      #experience table td {
-        padding: 12px 15px;
-        border: 1px solid #dee2e6;
-        vertical-align: middle;
-      }
-      #experience table th {
-        background-color: #f8f9fa;
-        font-weight: 500;
-        text-align: left;
-      }
-      #experience table td {
-        background-color: #ffffff;
-      }
-      #experience .company-logo {
-        width: 100px;
+        max-width: 180px;
         height: auto;
-        margin-right: 10px;
-        vertical-align: middle;
+        object-fit: contain;
       }
-      #experience .position {
+      .experience-logo.is-wide {
+        max-width: 192px;
+      }
+      .experience-org {
+        font-size: 1.03rem;
+        font-weight: 600;
+        color: #1f2937;
+        line-height: 1.35;
+      }
+      .experience-role {
+        margin-top: 3px;
+        color: #4b5563;
         font-weight: 500;
-        color: #343a40;
       }
-      #experience .duration {
-        font-size: 0.9em;
-        color: #868e96;
+      .experience-with {
+        margin-top: 7px;
+        color: #6b7280;
+        line-height: 1.55;
       }
-      #experience .location {
-        font-size: 0.9em;
-        color: #868e96;
-        margin-top: 4px;
+      .experience-with a,
+      .experience-with a:visited {
+        color: inherit;
+        text-decoration: none;
+      }
+      .experience-with a:hover,
+      .experience-with a:focus {
+        color: #495057;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .experience-location {
+        color: #9aa0a6;
+        font-size: 0.95em;
+        margin-top: 6px;
+      }
+      @media (max-width: 700px) {
+        .experience-item {
+          grid-template-columns: 1fr;
+          gap: 14px;
+          padding: 16px 0;
+        }
+        .experience-logo-slot {
+          justify-content: flex-start;
+        }
       }
 
       /* Footer */
@@ -674,9 +703,7 @@
   <body>
     <div class="topbar" role="navigation" aria-label="Primary">
       <div class="topbar-inner">
-        <a class="topbar-brand" href="#top">
-          <span class="prompt">Lei@Edinburgh:~$</span><span class="welcome"> <span class="c1">W</span><span class="c2">e</span><span class="c3">l</span><span class="c4">c</span><span class="c5">o</span><span class="c6">m</span><span class="c7">e</span><span class="c8">!</span></span>
-        </a>
+        <a class="topbar-brand" href="#top"><span class="prompt">Lei@Edinburgh:~$</span><span class="welcome"> Welcome!</span></a>
         <div class="topbar-links" aria-label="Sections">
           <a href="#top">Home</a>
           <a href="#research">Research</a>
@@ -686,7 +713,7 @@
     </div>
 
     <div class="page-content" id="top">
-      <div class="container scale-up-container">
+      <div class="container">
           <div class="row align-items-center py-4">
             <div class="col-12 col-md-4 text-center">
               <img src="images/leizhong2.jpeg" alt="Lei Zhong" class="profile-img mb-0">
@@ -986,59 +1013,59 @@
           </table>
 
           <h2 id="experience">Experience</h2>
-          <table class="table">
+          <div class="experience-list">
+            <div class="experience-item">
+              <div class="experience-logo-slot">
+                <div class="experience-logo-frame">
+                  <img src="images/DRS.png" alt="Disney Research Studios" class="experience-logo">
+                </div>
+              </div>
+              <div>
+                <div class="experience-org">Disney Research Studios</div>
+                <div class="experience-role">Research Intern</div>
+                <div class="experience-with">
+                  Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
+                  <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
+                </div>
+                <div class="experience-location">Zurich, Switzerland</div>
+              </div>
+            </div>
 
-            <!-- <tr>
-              <td style="width: 25%;">
-                <img src="images/lightspeed_logo.png" alt="LightSpeed Studios" style="width: 100%; max-width: 180px;">
-              </td>
-              <td>
-                <span class="fw-bold">LightSpeed Studios</span><br>
-                Research Intern<br>
-                Work with: <a href="https://scholar.google.com/citations?user=7oepLUoAAAAJ&hl=en/">Jingwei Xu</a>
-                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">London, UK</div>
-              </td>
-            </tr> -->
+            <div class="experience-item">
+              <div class="experience-logo-slot">
+                <div class="experience-logo-frame">
+                  <img src="images/neu_logo.png" alt="Northeastern University" class="experience-logo">
+                </div>
+              </div>
+              <div>
+                <div class="experience-org">Northeastern University</div>
+                <div class="experience-role">Research Assistant</div>
+                <div class="experience-with">
+                  Work with: <a href="https://jianghz.me/">Huaizu Jiang</a>,
+                  <a href="https://ymingxie.github.io//">Yiming Xie</a>
+                </div>
+                <div class="experience-location">Remote</div>
+              </div>
+            </div>
 
-            <tr>
-              <td style="width: 25%;">
-                <img src="images/DRS.png" alt="Disney Research Studios" style="width: 100%; max-width: 180px;">
-              </td>
-              <td>
-                <span class="fw-bold">Disney Research Studios</span><br>
-                Research Intern<br>
-                Work with: <a href="https://studios.disneyresearch.com/people/martin-guay/">Martin Guay</a>,
-                <a href="https://studios.disneyresearch.com/people/jakob-buhmann/">Jakob Buhmann</a>
-                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Zurich, Switzerland</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td style="width: 25%;">
-                <img src="images/neu_logo.png" alt="Northeastern University" style="width: 100%; max-width: 180px;">
-              </td>
-              <td>
-                <span class="fw-bold">Northeastern University</span><br>
-                Research Assistant<br>
-                Work with: <a href="https://jianghz.me/">Huaizu Jiang</a>,
-                <a href="https://ymingxie.github.io//">Yiming Xie</a>
-                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Remote</div>
-              </td>
-            </tr>
-
-            <tr>
-              <td style="width: 25%;">
-                <img src="images/tencent.png" alt="Tencent AI Lab" style="width: 100%; max-width: 150px;">
-              </td>
-              <td>
-                <span class="fw-bold">Tencent AI Lab</span><br>
-                Research Intern<br>
-                Work with: <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
-                <a href="https://calcifer.me/">Junwu Weng</a>
-                <div style="color: #adb5bd; font-size: 0.95em; margin-top: 2px;">Shenzhen, China</div>
-              </td>
-            </tr>
-          </table>
+            <div class="experience-item">
+              <div class="experience-logo-slot">
+                <div class="experience-logo-frame is-wide">
+                  <img src="images/tencent.png" alt="LightSpeed Studios / Tencent AI Lab" class="experience-logo is-wide">
+                </div>
+              </div>
+              <div>
+                <div class="experience-org">LightSpeed Studios / Tencent AI Lab</div>
+                <div class="experience-role">Research Intern</div>
+                <div class="experience-with">
+                  Work with: <a href="https://scholar.google.com/citations?user=7oepLUoAAAAJ&hl=en/">Jingwei Xu</a><span class="meta-sep"> / </span>
+                  <a href="https://yzhang2016.github.io/">Yong Zhang</a>,
+                  <a href="https://scholar.google.com/citations?hl=en&user=kujuGQoAAAAJ&view_op=list_works&sortby=pubdate/">Junwu Weng</a>
+                </div>
+                <div class="experience-location">Shenzhen, China</div>
+              </div>
+            </div>
+          </div>
 
           <footer>
             <p>Design and source code from Jon Barron's website <a href="https://github.com/jonbarron/jonbarron_website">source code</a>.</p>
